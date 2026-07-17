@@ -1,0 +1,2 @@
+import { gsap } from 'gsap'; import { ScrollTrigger } from 'gsap/ScrollTrigger';
+export function initTimeline(reduced) { if (reduced) return; gsap.from('.timeline__list', { '--line-progress': 0, ease: 'none', scrollTrigger: { trigger: '.timeline__list', start: 'top 75%', end: 'bottom 70%', scrub: 1 } }); gsap.from('.timeline__list li', { x: 45, autoAlpha: 0, stagger: .22, duration: .8, scrollTrigger: { trigger: '.timeline__list', start: 'top 70%' } }); }

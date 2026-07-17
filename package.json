@@ -1,0 +1,8 @@
+{
+  "name": "noor-and-zayn-invitation",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "dev": "vite", "build": "vite build --base=/Invitation/", "preview": "vite preview" },
+  "dependencies": { "@studio-freight/lenis": "^1.0.42", "gsap": "^3.12.5" },
+  "devDependencies": { "vite": "^5.4.8" }
+}
