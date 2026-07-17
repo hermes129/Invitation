@@ -28,20 +28,33 @@ export function initStory(reduced) {
   });
 
   media.add('(max-width: 720px)', () => {
-    const reveal = gsap.from(cards, {
-      autoAlpha: 0,
-      y: 28,
-      stagger: .1,
-      duration: .7,
-      ease: 'power3.out',
+    gsap.set(cards[0], { xPercent: -50, rotate: -2, zIndex: 3 });
+    gsap.set(cards[1], { xPercent: 80, rotate: 1.5, zIndex: 2 });
+    gsap.set(cards[2], { xPercent: 210, rotate: -1, zIndex: 1 });
+
+    const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: '.story__stack',
-        start: 'top 82%',
-        once: true,
+        start: 'top 12%',
+        end: '+=140%',
+        pin: true,
+        scrub: .75,
+        anticipatePin: 1,
       },
     });
 
-    return () => reveal.kill();
+    timeline
+      .to(cards[0], { xPercent: -180, rotate: -7, ease: 'none', duration: 1 }, 0)
+      .to(cards[1], { xPercent: -50, rotate: 1.5, ease: 'none', duration: 1 }, 0)
+      .to(cards[1], { xPercent: -180, rotate: 6, ease: 'none', duration: 1 }, 1)
+      .to(cards[2], { xPercent: -50, rotate: -1, ease: 'none', duration: 1 }, 1)
+      .fromTo('.story__script', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, ease: 'none', duration: .5 }, 1.45);
+
+    return () => {
+      timeline.kill();
+      gsap.set(cards, { clearProps: 'transform,zIndex' });
+      gsap.set('.story__script', { clearProps: 'transform,opacity,visibility' });
+    };
   });
 
   ScrollTrigger.refresh();

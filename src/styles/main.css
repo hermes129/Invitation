@@ -199,3 +199,24 @@ body.rsvp-modal-open{overflow:hidden}
 }
 
 @media (prefers-reduced-motion:reduce){.rsvp-modal,.rsvp-modal__card{transition:none}.confetti-piece{display:none}}
+
+/* Final mobile interaction refinements -------------------------------- */
+.hero:before{display:none}
+.reveal{background-image:none}
+
+@media (max-width:720px){
+  .opener__trigger{-webkit-tap-highlight-color:transparent}
+  .opener__trigger:before{display:none}
+  .story{min-height:100vh;padding-bottom:6vh}
+  .story__stack{position:relative;left:auto;right:auto;display:block;height:min(104vw,440px);margin:6vh -7vw 0;padding:0;overflow:hidden;touch-action:pan-y}
+  .story__stack::-webkit-scrollbar{display:none}
+  .polaroid{position:absolute;top:0;left:50%;width:78vw;height:auto;margin:0;padding:10px 10px 31px;will-change:transform}
+  .polaroid img{height:min(91vw,385px)}
+  .polaroid--one,.polaroid--two,.polaroid--three{transform:none}
+  .story__script{margin-top:2vh}
+}
+
+@media (max-width:720px) and (prefers-reduced-motion:reduce){
+  .story__stack{display:flex;height:auto;flex-direction:column;align-items:center;gap:24px;overflow:visible}
+  .polaroid{position:relative;top:auto;left:auto;transform:none!important}
+}
