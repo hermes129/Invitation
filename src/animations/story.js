@@ -38,16 +38,16 @@ export function initStory(reduced) {
         start: 'top 12%',
         end: '+=140%',
         pin: true,
-        scrub: .75,
+        scrub: true,
         anticipatePin: 1,
       },
     });
 
     timeline
-      .to(cards[0], { xPercent: -180, rotate: -7, ease: 'none', duration: 1 }, 0)
-      .to(cards[1], { xPercent: -50, rotate: 1.5, ease: 'none', duration: 1 }, 0)
-      .to(cards[1], { xPercent: -180, rotate: 6, ease: 'none', duration: 1 }, 1)
-      .to(cards[2], { xPercent: -50, rotate: -1, ease: 'none', duration: 1 }, 1)
+      .to(cards[0], { xPercent: -180, rotate: -4, force3D: true, ease: 'none', duration: 1 }, 0)
+      .to(cards[1], { xPercent: -50, rotate: 1, force3D: true, ease: 'none', duration: 1 }, 0)
+      .to(cards[1], { xPercent: -180, rotate: 4, force3D: true, ease: 'none', duration: 1 }, 1)
+      .to(cards[2], { xPercent: -50, rotate: -1, force3D: true, ease: 'none', duration: 1 }, 1)
       .fromTo('.story__script', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, ease: 'none', duration: .5 }, 1.45);
 
     return () => {
