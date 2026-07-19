@@ -16,7 +16,7 @@ import { initOpener } from './animations/opener.js';
 gsap.registerPlugin(ScrollTrigger, Flip);
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (!reducedMotion && !window.matchMedia('(pointer: coarse)').matches) {
+if (!reducedMotion && window.matchMedia('(min-width: 1025px) and (pointer: fine)').matches) {
   const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 0.85 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));

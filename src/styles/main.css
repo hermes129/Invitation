@@ -275,3 +275,142 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
   a,button{forced-color-adjust:auto}
   .round-link,.rsvp__link,.rsvp-modal__map,.rsvp-modal__close{border:2px solid ButtonText}
 }
+
+/* Complete responsive system ------------------------------------------ */
+:root{--page-gutter:clamp(20px,6vw,112px)}
+.section h1,.section h2{text-wrap:balance}
+.venue__card{display:flex;min-height:min(72vh,650px);flex-direction:column}
+.round-link{width:100%;height:auto;min-height:72px;justify-content:flex-start;margin-top:auto;padding:18px 0 0;border:0;border-top:1px solid #86233d;border-radius:0;background:transparent;font-family:var(--sans);font-size:clamp(30px,3vw,46px);font-weight:400;line-height:1;letter-spacing:-.05em;text-align:left}
+.venue__side{font-size:11px;line-height:1.55}
+.rsvp__link{letter-spacing:.08em}
+
+@media (min-width:721px) and (max-width:1024px){
+  .section{min-height:100svh}
+  .hero{border-width:10px}
+  .hero__portrait{width:68vw;height:75svh;border-width:8px}
+  .hero__title{font-size:18vw}
+  .hero__meta{top:82px;left:24px;right:24px}
+  .hero__date{bottom:30px}
+  .scroll-cue{right:20px;bottom:24px}
+
+  .reveal{min-height:auto;padding:11vh 7vw 9vh}
+  .reveal__grid{grid-template-columns:1.15fr .75fr;gap:7vw;margin-top:9vh}
+  .reveal h2,.story h2,.venue h2,.timeline h2,.gallery h2,.rsvp h2{font-size:clamp(70px,11vw,112px)}
+  .reveal__seal{right:7vw;bottom:6vh}
+
+  .story{min-height:100svh;height:auto;padding:9vh 7vw 7vh;overflow:hidden}
+  .story__intro{max-width:500px}
+  .story__intro h2{margin:20px 0 26px}
+  .story__stack{position:relative;top:auto;left:auto;right:auto;display:block;height:min(72vw,610px);margin:6vh -7vw 0;padding:0;overflow:visible;touch-action:pan-y;transform:none}
+  .polaroid{position:absolute;top:16px;left:50%;width:min(52vw,480px);height:auto;margin:0;padding:12px 12px 36px;backface-visibility:hidden;will-change:transform}
+  .polaroid img{height:min(59vw,530px);filter:none}
+  .polaroid--one,.polaroid--two,.polaroid--three{transform:none}
+  .story__script{position:relative;right:auto;bottom:auto;width:max-content;margin:2vh 0 0 auto;font-size:clamp(46px,8vw,76px)}
+
+  .venue{min-height:100svh;padding:7vh 6vw}
+  .venue__card{width:min(480px,56vw);padding:34px}
+  .venue__card h2{margin:48px 0 30px}
+  .round-link{min-height:72px;font-size:clamp(30px,5vw,44px)}
+
+  .dress{display:flex;min-height:auto;flex-direction:column;padding:9vh 6vw 8vh}
+  .dress__type{margin-top:5vh;font-size:13vw;line-height:.72}
+  .dress__type span:last-child{padding-left:12vw}
+  .dress__image{position:relative;top:auto;left:auto;width:min(58vw,560px);height:min(70vw,670px);margin:-2vh auto 0}
+  .dress__note{position:relative;right:auto;bottom:auto;width:min(58vw,560px);margin:30px auto 0}
+
+  .timeline{min-height:auto;grid-template-columns:.8fr 1fr;gap:6vw;padding:11vh 7vw 10vh}
+  .timeline__list li{grid-template-columns:78px 1fr;padding-bottom:38px}
+  .timeline li>span{font-size:clamp(28px,4vw,42px)}
+
+  .gallery{min-height:auto;padding:10vh 6vw 9vh}
+  .gallery__intro{width:min(330px,42vw);margin-top:16px}
+  .gallery__grid{grid-template-columns:1fr 1fr;gap:22px;margin-top:7vh}
+  .gallery__item--1,.gallery__item--2{height:58vw}
+  .gallery__item--3{grid-column:1/3;width:62%;height:43vw;justify-self:center}
+
+  .rsvp{display:flex;min-height:auto;flex-direction:column;align-items:center;gap:6vh;padding:10vh 7vw 9vh;text-align:center}
+  .rsvp__head{width:100%}
+  .envelope{align-self:center;width:400px;max-width:70vw;height:270px;max-height:47vw}
+  .rsvp__link{position:relative;right:auto;bottom:auto;left:auto;width:min(400px,70vw);min-height:54px;justify-content:center;margin-top:0;padding:15px 18px;border:1px solid var(--gold)}
+  .ending{min-height:72svh}
+}
+
+@media (max-width:720px){
+  .section{min-height:auto}
+  .hero{min-height:100svh}
+  .hero__meta{font-size:11px}
+  .reveal{padding:9vh 7vw 8vh}
+  .reveal h2,.story h2,.venue h2,.timeline h2,.gallery h2,.rsvp h2{font-size:clamp(58px,18vw,90px);line-height:.78}
+  .reveal__grid{gap:5vh;margin-top:6vh}
+  .reveal__seal{position:relative;right:auto;bottom:auto;margin:3vh 0 0 auto}
+
+  .story{padding:8vh 7vw 7vh}
+  .story__intro{max-width:34ch}
+
+  .dress{display:flex;min-height:auto;flex-direction:column;padding:8vh 6vw 7vh}
+  .dress__type{margin-top:5vh;font-size:20vw;line-height:.7}
+  .dress__type span:last-child{padding-left:7vw}
+  .dress__image{position:relative;top:auto;left:auto;width:82vw;height:104vw;margin:-1vh auto 0}
+  .dress__note{position:relative;right:auto;bottom:auto;width:82vw;margin:26px auto 0}
+  .dress__note span{font-size:26px;line-height:1.15}
+
+  .timeline{padding:9vh 7vw 8vh}
+  .timeline__list{margin-top:7vh}
+  .timeline__list li{grid-template-columns:68px 1fr;gap:10px;padding:0 0 34px 22px}
+  .timeline li>span{font-size:clamp(28px,8.5vw,42px);line-height:1}
+
+  .gallery{padding:8vh 7vw 7vh}
+  .gallery__grid{margin-top:6vh}
+  .gallery__item figcaption{font-size:11.5px}
+  .rsvp{padding:8vh 7vw 8vh}
+  .ending{min-height:68svh}
+  .venue__card{min-height:min(78svh,660px)}
+  .venue__card>p:not(.eyebrow),.dress__note p{font-size:13px}
+  .timeline time,.timeline small{font-size:12px}
+  .round-link{min-height:72px;font-size:clamp(34px,11vw,50px)}
+}
+
+@media (max-width:420px){
+  .hero{border-width:6px}
+  .hero__portrait{width:80vw;height:67svh}
+  .hero__title{font-size:24vw}
+  .hero__meta{top:64px;left:14px;right:14px;gap:12px;font-size:11px}
+  .hero__date{bottom:18px}
+  .scroll-cue{right:6px;bottom:18px}
+
+  .reveal,.story,.timeline,.gallery,.rsvp{padding-right:20px;padding-left:20px}
+  .reveal h2,.story h2,.venue h2,.timeline h2,.gallery h2,.rsvp h2{font-size:clamp(54px,17vw,72px)}
+  .story__stack{margin-right:-20px;margin-left:-20px}
+  .polaroid{width:80vw}
+
+  .venue{padding:5vh 14px}
+  .venue__card{min-height:min(82svh,620px);padding:28px 24px 22px}
+  .venue__card h2{margin:34px 0 24px}
+  .round-link{min-height:68px;font-size:clamp(34px,11vw,46px)}
+
+  .dress{padding-right:20px;padding-left:20px}
+  .dress__image,.dress__note{width:86vw}
+  .dress__image{height:109vw}
+
+  .timeline__list li{grid-template-columns:62px 1fr;padding-left:18px}
+  .timeline time,.timeline small{font-size:12px}
+  .gallery__item figcaption{font-size:11.5px}
+
+  .envelope{width:82vw;height:56vw}
+  .envelope:before{border-width:0 0 29vw 41vw}
+  .envelope:after{border-width:29vw 0 0 41vw}
+  .rsvp__link{min-height:56px}
+  .rsvp-modal__card{width:calc(100vw - 20px);padding-right:20px;padding-left:20px}
+}
+
+@media (min-width:1440px){
+  .reveal__copy,.story__intro>p:last-child{font-size:18px}
+  .venue__card>p:not(.eyebrow),.dress__note p,.timeline time,.timeline small{font-size:13px}
+  .gallery__item figcaption{font-size:12px}
+}
+
+@media (max-width:1024px) and (prefers-reduced-motion:reduce){
+  .story{min-height:auto}
+  .story__stack{display:flex;height:auto;flex-direction:column;align-items:center;gap:24px;overflow:visible}
+  .polaroid{position:relative;top:auto;left:auto;transform:none!important}
+}

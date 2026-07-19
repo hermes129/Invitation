@@ -7,7 +7,7 @@ export function initStory(reduced) {
   const cards = gsap.utils.toArray('.polaroid');
   const media = gsap.matchMedia();
 
-  media.add('(min-width: 721px)', () => {
+  media.add('(min-width: 1025px)', () => {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: '.story',
@@ -27,7 +27,7 @@ export function initStory(reduced) {
     return () => timeline.kill();
   });
 
-  media.add('(max-width: 720px)', () => {
+  media.add('(max-width: 1024px)', () => {
     gsap.set(cards[0], { xPercent: -50, rotate: -2, zIndex: 3 });
     gsap.set(cards[1], { xPercent: 80, rotate: 1.5, zIndex: 2 });
     gsap.set(cards[2], { xPercent: 210, rotate: -1, zIndex: 1 });
