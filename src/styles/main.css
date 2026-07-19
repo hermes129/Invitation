@@ -414,3 +414,90 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
   .story__stack{display:flex;height:auto;flex-direction:column;align-items:center;gap:24px;overflow:visible}
   .polaroid{position:relative;top:auto;left:auto;transform:none!important}
 }
+
+/* Requested content and interaction refinements ----------------------- */
+.eyebrow{font-size:clamp(12px,.95vw,15px);line-height:1.55}
+
+.reveal__details{display:grid;gap:18px;margin-top:clamp(32px,5vh,52px)}
+.reveal__details p{display:grid;grid-template-columns:32px 1fr;align-items:center;gap:14px;margin:0}
+.reveal__details svg{width:27px;height:27px;fill:none;stroke:#86233d;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.reveal__details span{display:flex;flex-direction:column;gap:2px}
+.reveal__details small{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.reveal__details strong{color:#86233d;font-family:var(--serif);font-size:clamp(32px,3vw,44px);font-weight:500;line-height:.9;letter-spacing:-.04em}
+
+.story__swipe-hint{display:none}
+.venue__card>p:not(.eyebrow){font-size:15px;line-height:1.75}
+
+.dress__note{right:4vw;bottom:7vh;width:min(22vw,320px)}
+.dress__note span{font-size:30px;line-height:1.08}
+.dress__note p{font-size:15px;line-height:1.75}
+
+.gallery__item figcaption{padding:14px 16px;font-size:13.5px;line-height:1.4}
+
+.rsvp{background-image:none}
+.rsvp__link{right:10vw;bottom:7vh;left:auto;display:flex;width:min(400px,36vw);height:auto;min-height:72px;align-items:center;justify-content:flex-start;margin:0;padding:18px 0 8px;border:0;border-top:1px solid var(--gold);background:transparent;font-family:var(--sans);font-size:clamp(32px,3vw,46px);font-weight:400;line-height:.92;letter-spacing:-.045em;text-align:left;text-wrap:balance}
+.rsvp__link:hover{background:rgba(247,230,188,.07)}
+
+@media (min-width:1025px){
+  .dress__type{width:39vw;font-size:clamp(96px,9vw,142px);line-height:.76;letter-spacing:-.08em;overflow:visible}
+  .dress__type span:last-child{padding-left:5vw}
+  .story{min-height:100svh;height:auto;padding:9vh 7vw 6vh;overflow:hidden}
+  .story__intro{max-width:min(34vw,500px)}
+  .story__stack{position:relative;top:auto;left:auto;right:auto;display:grid;height:auto;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:clamp(20px,2.5vw,44px);margin-top:clamp(44px,7vh,76px);place-content:unset;overflow:visible}
+  .polaroid{position:relative;top:auto;left:auto;width:100%;height:auto;margin:0;transform:none}
+  .polaroid img{height:clamp(290px,27vw,430px)}
+  .polaroid--one,.polaroid--two,.polaroid--three{transform:none}
+  .story__script{position:relative;top:auto;right:auto;bottom:auto;width:max-content;margin:clamp(24px,4vh,48px) 0 0 auto;font-size:clamp(42px,4vw,68px)}
+}
+
+@media (min-width:721px) and (max-width:1024px){
+  .reveal__details strong{font-size:clamp(34px,5vw,44px)}
+  .story__swipe-hint{display:block;margin:5vh 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .story__stack{position:relative;top:auto;left:auto;right:auto;display:flex;height:auto;flex-direction:row;align-content:flex-start;align-items:stretch;justify-content:flex-start;gap:24px;margin:18px -7vw 0;padding:8px 7vw 36px;overflow-x:auto;overflow-y:hidden;scroll-padding-inline:7vw;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;touch-action:pan-x pan-y;transform:none;scrollbar-color:#bd8a3e transparent;scrollbar-width:thin}
+  .polaroid{position:relative;top:auto;left:auto;flex:0 0 min(68vw,520px);width:min(68vw,520px);height:auto;margin:0;padding:12px 12px 36px;scroll-snap-align:center;transform:none!important;will-change:auto}
+  .polaroid img{height:min(72vw,550px)}
+  .story__script{position:relative;right:auto;bottom:auto;width:max-content;margin:2vh 0 0 auto}
+  .dress__image{margin:3vh auto 0}
+  .dress__note{right:auto;bottom:auto;width:min(58vw,560px)}
+  .dress__note p{font-size:15px}
+  .rsvp__link{position:relative;right:auto;bottom:auto;left:auto;width:min(400px,70vw);min-height:72px;justify-content:flex-start;margin-top:1vh;padding:18px 0 8px;border:0;border-top:1px solid var(--gold);font-size:clamp(34px,5.5vw,46px);text-align:left}
+}
+
+@media (max-width:720px){
+  .eyebrow{font-size:12px}
+  .reveal__details{gap:16px;margin-top:32px}
+  .reveal__details p{grid-template-columns:30px 1fr;gap:12px}
+  .reveal__details svg{width:25px;height:25px}
+  .reveal__details small{font-size:11px}
+  .reveal__details strong{font-size:clamp(34px,10.5vw,46px)}
+
+  .story__swipe-hint{display:block;margin:4vh 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+  .story__stack{position:relative;top:auto;left:auto;right:auto;display:flex;height:auto;flex-direction:row;align-content:flex-start;align-items:stretch;justify-content:flex-start;gap:18px;margin:15px -7vw 0;padding:8px 7vw 30px;overflow-x:auto;overflow-y:hidden;scroll-padding-inline:7vw;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;touch-action:pan-x pan-y;transform:none;scrollbar-color:#bd8a3e transparent;scrollbar-width:thin}
+  .polaroid{position:relative;top:auto;left:auto;flex:0 0 86vw;width:86vw;height:auto;margin:0;padding:10px 10px 32px;scroll-snap-align:center;transform:none!important;will-change:auto}
+  .polaroid img{height:min(105vw,430px)}
+  .story__script{position:relative;right:auto;bottom:auto;width:max-content;margin:3vh 0 0 auto}
+
+  .venue__card>p:not(.eyebrow){font-size:15px;line-height:1.75}
+  .dress__image{margin:3vh auto 0}
+  .dress__note{right:auto;bottom:auto;width:82vw}
+  .dress__note span{font-size:28px}
+  .dress__note p{font-size:15px;line-height:1.7}
+  .gallery__item figcaption{padding:13px 14px;font-size:13px}
+
+  .rsvp{align-items:center;gap:7vh;text-align:center}
+  .rsvp__head{width:100%}
+  .rsvp__link{position:relative;right:auto;bottom:auto;left:auto;width:100%;min-height:72px;justify-content:flex-start;margin-top:1vh;padding:18px 0 8px;border:0;border-top:1px solid var(--gold);font-size:clamp(36px,11vw,48px);text-align:left}
+}
+
+@media (max-width:420px){
+  .story__stack{margin-right:-20px;margin-left:-20px;padding-right:20px;padding-left:20px;scroll-padding-inline:20px}
+  .polaroid{flex-basis:84vw;width:84vw}
+  .dress__note{width:86vw}
+  .gallery__item figcaption{font-size:12.5px}
+}
+
+@media (min-width:1440px){
+  .reveal__details strong{font-size:44px}
+  .venue__card>p:not(.eyebrow),.dress__note p{font-size:16px}
+  .gallery__item figcaption{font-size:14px}
+}
