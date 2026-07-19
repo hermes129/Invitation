@@ -222,3 +222,56 @@ body.rsvp-modal-open{overflow:hidden}
   .story__stack{display:flex;height:auto;flex-direction:column;align-items:center;gap:24px;overflow:visible}
   .polaroid{position:relative;top:auto;left:auto;transform:none!important}
 }
+
+/* Accessible type, controls, and focus treatment ----------------------- */
+html{font-size:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-size:16px;line-height:1.55}
+a,button{touch-action:manipulation}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid #f7e6bc;outline-offset:4px;box-shadow:0 0 0 7px #86233d}
+.hero__title:focus,.reveal h2:focus{outline:none;box-shadow:none}
+.skip-link{position:fixed;z-index:200;top:12px;left:12px;padding:12px 16px;background:#f7e6bc;color:#521326;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transform:translateY(-160%)}
+.skip-link:focus{transform:translateY(0)}
+.eyebrow{font-size:clamp(11px,.8vw,13px);line-height:1.5}
+.hero__meta{font-size:11px;line-height:1.5}
+.hero__date{font-size:12px}
+.scroll-cue{min-width:44px;min-height:44px;font-size:10px;line-height:1.4}
+.reveal__copy{font-size:clamp(16px,1.15vw,18px);line-height:1.6}
+.reveal__copy p:first-child{max-width:34ch}
+.reveal__address{font-size:12px;line-height:1.75}
+.story__intro>p:last-child{max-width:38ch;font-size:16px;line-height:1.6}
+.polaroid figcaption{font-size:16px;line-height:1.35}
+.venue__card>p:not(.eyebrow),.dress__note p{font-size:12px;line-height:1.75}
+.timeline time,.timeline small{font-size:12px;line-height:1.5}
+.timeline li>span{line-height:1}
+.gallery__item figcaption{font-size:11px;line-height:1.4}
+.envelope__card span:last-of-type{font-size:11px}
+.rsvp__link{min-height:44px;padding:12px 0;font-size:12px;line-height:1.4}
+.rsvp-modal__close{width:44px;height:44px;line-height:38px}
+.rsvp-modal__details dt{font-size:11px;line-height:1.5}
+.rsvp-modal__map{min-height:48px;font-size:11px;line-height:1.4}
+.opener__hint{font-size:11px;line-height:1.4}
+
+@media (max-width:720px){
+  .hero__meta{top:72px;font-size:10px}
+  .hero__date{font-size:12px}
+  .scroll-cue{right:10px;font-size:10px}
+  .reveal__copy{font-size:17px}
+  .reveal__address{font-size:12px}
+  .venue{min-height:100svh;align-items:center;padding:7vh 4vw}
+  .venue__card{display:flex;width:100%;min-height:min(78svh,660px);flex-direction:column;padding:32px 28px 25px}
+  .venue__card h2{margin:clamp(38px,8vh,64px) 0 28px}
+  .venue__card>p:not(.eyebrow){font-size:12px}
+  .round-link{width:100%;height:auto;min-height:76px;justify-content:flex-start;margin-top:auto;padding:20px 0 0;border:0;border-top:1px solid #86233d;border-radius:0;background:transparent;font-family:var(--sans);font-size:clamp(34px,11.5vw,58px);font-weight:400;line-height:1;letter-spacing:-.055em;text-align:left}
+  .round-link:active{background:rgba(134,35,61,.07)}
+  .dress__note p{font-size:12px}
+  .timeline time,.timeline small{font-size:11px}
+  .gallery__item figcaption{padding:11px 12px;font-size:10px;line-height:1.4}
+  .rsvp__link{width:100%;min-height:54px;margin-top:0;padding:15px 18px;border:1px solid var(--gold);justify-content:center}
+  .rsvp-modal__map{min-height:50px;padding:14px 20px;font-size:11px}
+  .opener__hint{bottom:2.1vh;font-size:10px;letter-spacing:.08em}
+}
+
+@media (forced-colors:active){
+  a,button{forced-color-adjust:auto}
+  .round-link,.rsvp__link,.rsvp-modal__map,.rsvp-modal__close{border:2px solid ButtonText}
+}

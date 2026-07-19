@@ -33,6 +33,7 @@ export function initRsvp(reduced) {
   const confetti = modal?.querySelector('.rsvp-modal__confetti');
   const closeButton = modal?.querySelector('.rsvp-modal__close');
   const closeTargets = modal?.querySelectorAll('[data-rsvp-close]') ?? [];
+  const page = document.querySelector('main');
   let hideTimer;
 
   envelope?.addEventListener('click', () => {
@@ -45,10 +46,13 @@ export function initRsvp(reduced) {
     if (!modal) return;
     window.clearTimeout(hideTimer);
     modal.hidden = false;
+    page?.setAttribute('inert', '');
     document.body.classList.add('rsvp-modal-open');
-    requestAnimationFrame(() => modal.classList.add('is-visible'));
+    requestAnimationFrame(() => {
+      modal.classList.add('is-visible');
+      closeButton?.focus();
+    });
     celebrate(confetti, reduced);
-    closeButton?.focus();
   };
 
   const closeModal = () => {
@@ -57,6 +61,7 @@ export function initRsvp(reduced) {
     document.body.classList.remove('rsvp-modal-open');
     hideTimer = window.setTimeout(() => {
       modal.hidden = true;
+      page?.removeAttribute('inert');
       openButton?.focus();
     }, reduced ? 0 : 350);
   };
@@ -65,7 +70,26 @@ export function initRsvp(reduced) {
   closeTargets.forEach((target) => target.addEventListener('click', closeModal));
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal && !modal.hidden) closeModal();
+    if (!modal || modal.hidden) return;
+
+    if (event.key === 'Escape') {
+      closeModal();
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const focusable = [...modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+      const first = focusable[0];
+      const last = focusable.at(-1);
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    }
   });
 
   if (!reduced) {

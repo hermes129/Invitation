@@ -14,9 +14,12 @@ export function initOpener(reduced) {
     const rightPanel = opener.querySelector('.opener__panel--right');
     const copy = opener.querySelector('.opener__copy');
     const site = document.querySelector('main');
+    const skipLink = document.querySelector('.skip-link');
+    const heroTitle = document.querySelector('#hero-title');
+    const invitationTitle = document.querySelector('#invitation-title');
     let opened = false;
 
-    const enter = () => {
+    const enter = ({ skip = false } = {}) => {
       if (opened) return;
       opened = true;
       button.disabled = true;
@@ -25,10 +28,12 @@ export function initOpener(reduced) {
       const finish = () => {
         opener.remove();
         document.body.classList.remove('intro-active');
+        const focusTarget = skip ? invitationTitle : heroTitle;
+        focusTarget?.focus({ preventScroll: !skip });
         resolve();
       };
 
-      if (reduced) { finish(); return; }
+      if (reduced || skip) { finish(); return; }
 
       gsap.timeline({ onComplete: finish })
         .to(copy, { autoAlpha: 0, scale: .985, duration: .28, ease: 'power2.out' })
@@ -37,7 +42,11 @@ export function initOpener(reduced) {
         .to(rightPanel, { xPercent: 105, duration: 1.6, ease: 'expo.inOut' }, .1);
     };
 
-    button.addEventListener('click', enter);
+    button.addEventListener('click', () => enter());
+    skipLink?.addEventListener('click', (event) => {
+      event.preventDefault();
+      enter({ skip: true });
+    });
     opener.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') enter();
     });
