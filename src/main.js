@@ -1,21 +1,24 @@
 import './styles/main.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Flip } from 'gsap/Flip';
 import Lenis from '@studio-freight/lenis';
+
+import { initMotifs, initDraw } from './utils/draw.js';
+import { initCursor, initMagnetic } from './utils/ui.js';
+import { initOpener } from './animations/opener.js';
 import { initHero } from './animations/hero.js';
 import { initStory } from './animations/story.js';
 import { initVenue } from './animations/venue.js';
 import { initDress } from './animations/dress.js';
 import { initTimeline } from './animations/timeline.js';
-import { initGallery } from './animations/gallery.js';
 import { initRsvp } from './animations/rsvp.js';
-import { initCursor, initMagnetic, initLazyImages } from './utils/ui.js';
-import { initOpener } from './animations/opener.js';
 import { initDateScratch } from './date-scratch.js';
 
-gsap.registerPlugin(ScrollTrigger, Flip);
+gsap.registerPlugin(ScrollTrigger);
+
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ── Music ─────────────────────────────────────────────────────────────── */
 const music = document.querySelector('#site-music');
 const musicToggle = document.querySelector('#music-toggle');
 const musicLabel = musicToggle?.querySelector('.music-toggle__label');
@@ -32,16 +35,11 @@ function syncMusicControl() {
 
 async function setMusicPlaying(shouldPlay) {
   if (!music) return;
-  if (!shouldPlay) {
-    music.pause();
-    syncMusicControl();
-    return;
-  }
-
+  if (!shouldPlay) { music.pause(); syncMusicControl(); return; }
   try {
     await music.play();
   } catch {
-    // The control remains available if a browser declines audio playback.
+    // The control stays available if the browser declines autoplay.
   }
   syncMusicControl();
 }
@@ -55,6 +53,7 @@ musicToggle?.addEventListener('click', () => setMusicPlaying(music?.paused ?? tr
 music?.addEventListener('play', syncMusicControl);
 music?.addEventListener('pause', syncMusicControl);
 
+/* ── Smooth scroll (desktop pointers only) ─────────────────────────────── */
 if (!reducedMotion && window.matchMedia('(min-width: 1025px) and (pointer: fine)').matches) {
   const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 0.85 });
   lenis.on('scroll', ScrollTrigger.update);
@@ -62,7 +61,11 @@ if (!reducedMotion && window.matchMedia('(min-width: 1025px) and (pointer: fine)
   gsap.ticker.lagSmoothing(0);
 }
 
-initLazyImages();
+/* ── Boot ──────────────────────────────────────────────────────────────── */
+// Motifs are injected before anything measures the DOM, so initDraw() can
+// find the paths it needs to dash out.
+initMotifs();
+
 initCursor(reducedMotion);
 initMagnetic(reducedMotion);
 initHero(reducedMotion);
@@ -70,9 +73,10 @@ initStory(reducedMotion);
 initVenue(reducedMotion);
 initDress(reducedMotion);
 initTimeline(reducedMotion);
-initGallery(reducedMotion);
 initRsvp(reducedMotion);
 initDateScratch();
+initDraw(reducedMotion);
+
 ScrollTrigger.refresh();
 
 initOpener(reducedMotion).then(() => {
