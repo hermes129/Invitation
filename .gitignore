@@ -5,3 +5,20 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Full-size generated masters (~105MB). Source of truth for regenerating
+# shipped webp, but far too heavy to carry in git history.
+art-masters/
+
+# Local scratch and verification harness (~39MB).
+.test-tools/
+_to_delete/
+
+# Skills are copied out into .claude/skills/, so the plugin repos they came
+# from are redundant here (~7MB). .claude/skills/ and CLAUDE.md stay tracked.
+.claude/plugin-sources/
+
+# Each sub-project under projects/ is its own independent repo. Committing
+# them from the root would add bare gitlinks with no submodule config, so
+# clones would get empty folders. They are versioned separately.
+projects/
