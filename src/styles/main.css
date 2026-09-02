@@ -956,3 +956,152 @@ h2 em { font-weight: 400; }
   /* Never leave an illustration half-drawn. */
   [data-draw], [data-draw] * { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
 }
+
+/* ═══ Contrast corrections ════════════════════════════════════════════
+   Both scoped deliberately. --gold and --gold-light also drive motif
+   accents across every section, so moving the tokens themselves would
+   restain the illustration layer to fix two text labels.
+
+   The story card numbers were --gold on cream at 9px: 2.67:1 against the
+   4.5 that small text needs, which at that size is genuinely hard to read.
+   A deeper bronze of the same hue clears it at 5.3.
+
+   The hero date separators were --gold-light on teal at 11px: 4.38, just
+   short of 4.5. A hair lighter clears it at 4.78. */
+.story__card figcaption span { color: #7d5b21; }
+.hero__date i { color: #e8c583; }
+
+/* The date separators were #8f7760, a muted taupe that measured 3.48:1 on the
+   cream panel where small text needs 4.5. Same fix as the other sites: they
+   take the madder the numerals already use and are quietened by size rather
+   than by colour, which lands them near 7.5:1. Unlike nikkah's gold this
+   passes at any size, so no minimum size is pinned here. */
+.date-scratch__value i { color: var(--madder); }
+
+/* ═══ Mobile type scale ═══════════════════════════════════════════════
+   17 of 27 text elements on the page were rendering under 14px at 390,
+   and the worst of them were things a guest actually has to read: the
+   venue address and the programme times at 10px, the RSVP button at 10px,
+   the hero meta at 8px.
+
+   Raised by tier rather than by one blanket multiplier, because these are
+   doing different jobs. Mono caps with wide tracking read smaller than
+   their pixel size suggests, so labels sit at 12 where prose sits at 15.
+   Desktop is deliberately untouched. */
+@media (max-width: 720px) {
+  /* Information a guest needs to read. */
+  .venue__card > p:not(.eyebrow),
+  .dress__note,
+  .timeline time,
+  .timeline small,
+  .reveal__details small,
+  .rsvp-modal__details dt,
+  .rsvp-modal__map            { font-size: 15px; }
+
+  /* Controls: the label has to survive alongside the tap target. */
+  .rsvp__link,
+  .date-scratch__button,
+  .opener__trigger,
+  .music-toggle,
+  .skip-link,
+  .opener__film-skip          { font-size: 14px; }
+
+  /* Dates and standing meta. */
+  .hero__date,
+  .ending__date               { font-size: 13px; }
+  .hero__meta                 { font-size: 12px; }
+
+  /* Mono labels and captions. Wide tracking makes these read smaller than
+     they measure, so 12 is the floor rather than the target. */
+  .eyebrow,
+  .story__card figcaption span,
+  .story__swipe-hint,
+  .venue__side,
+  .swatches span,
+  .envelope__card span:last-of-type,
+  .music-credit,
+  .date-scratch__hint,
+  .opener__hint               { font-size: 12px; }
+
+  /* The card captions carry the story beats; they were the smallest prose
+     on the page after the numbers. */
+  .story__card figcaption     { font-size: 15px; }
+}
+
+/* ═══ The date, as a dateline ═════════════════════════════════════════
+   Same rebuild as the editorial and nikkah reveals. Three numerals alone
+   cannot say which month, which year or where, and the panel read as an
+   input field rather than as print.
+
+   The caption says "October 2026 / Karachi" and deliberately not the
+   weekday: `.reveal__details` directly beneath already carries "Saturday
+   arrival, 4:00 PM", and repeating it would be the only thing a reader
+   noticed. Unlike nikkah this stage is not nested inside an already
+   double-ruled card, so it can carry the printed-stock double rule itself. */
+.date-scratch__stage { padding: clamp(14px, 3vw, 22px); }
+.date-scratch__stage::after {
+  content: "";
+  position: absolute;
+  inset: clamp(6px, 1.4vw, 9px);
+  border: 1px solid color-mix(in srgb, var(--gold) 42%, transparent);
+  pointer-events: none;
+}
+.date-scratch__value {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: clamp(10px, 2vw, 15px);
+  width: 100%;
+  padding: 0;
+}
+.date-scratch__numerals {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(8px, 1.2vw, 18px);
+  color: var(--madder);
+  font-family: var(--serif); font-size: clamp(44px, 5.7vw, 76px);
+  font-weight: 500; line-height: 1; letter-spacing: -.03em; white-space: nowrap;
+}
+.date-scratch__numerals i { color: var(--madder); font-size: .45em; font-style: normal; }
+.date-scratch__rule {
+  width: min(100%, 220px); height: 1px;
+  background: color-mix(in srgb, var(--madder) 30%, transparent);
+}
+.date-scratch__caption {
+  color: var(--ink, #3a2a1c);
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase; text-align: center;
+}
+
+@media (max-width: 720px) {
+  /* The numerals were filling barely half the panel, which is what made the
+     margins either side read as a hole. Same fault as the other two. */
+  .date-scratch__numerals { font-size: clamp(46px, 22vw, 78px); }
+  .date-scratch__caption { font-size: 12px; letter-spacing: .12em; }
+}
+
+/* ═══ Story head on mobile ════════════════════════════════════════════
+   The desktop head is a two-column grid: the intro on the left and
+   "Written in the stars" set right as a counterpoint. Stacked on mobile
+   that flourish landed directly under the lead, left-aligned and at 30px
+   against a 14px paragraph, so the decoration outranked the copy and read
+   as a second heading.
+
+   The lead comes up to 16px, the flourish comes down and moves right, and
+   the swipe hint is pulled off the head and onto the rail it describes. */
+@media (max-width: 720px) {
+  .story__head { gap: 18px; }
+  .story__intro h2 { margin: 0 0 18px; }
+  .story__intro > p:last-child { font-size: 16px; line-height: 1.6; }
+
+  .story__script {
+    text-align: right;
+    font-size: 22px;
+    line-height: 1.05;
+    opacity: .8;
+  }
+
+  /* Belongs to the rail, not to the head: more air above it, almost none
+     below, so it reads as a label on the cards rather than a floating line. */
+  .story__swipe-hint { margin: 30px 0 0; }
+  .story__stack { margin-top: 10px; }
+}

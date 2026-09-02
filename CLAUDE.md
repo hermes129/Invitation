@@ -10,7 +10,7 @@ the motif kit.
 | Heritage Garden (Mughal miniature) | repo root | `--base=/Invitation/` | yes |
 | Vibrant Mehendi (truck-art folk) | `projects/vibrant-mehendi-celebration` | `--base=./` | yes |
 | Minimal Ivory Nikkah (photographic) | `projects/minimal-ivory-gold-nikkah` | `--base=./` | yes |
-| Sindhi Ajrak (block print) | `projects/sindhi-ajrak-invitation` | `--base=./` | **no repo yet** |
+| Sindhi Ajrak (block print) | `projects/sindhi-ajrak-invitation` | `--base=./` | yes |
 | Contemporary Editorial | `projects/contemporary-pakistani-editorial` | `--base=./` | yes |
 
 The root site's base is `/Invitation/`, not `./`. Serving its `dist/` at a
@@ -28,10 +28,17 @@ server root gives an unstyled page **with no console errors** — every asset
 - **Image generation costs real credits.** Talk through a brief and get
   explicit approval before generating. Check `art-masters/` and the existing
   `public/assets/` first — work has been paid for and left unwired before.
-- **Generated art arrives by hand.** This environment cannot fetch the
-  generation CDN. The flow is: generate → user saves the PNG into the site's
-  `public/assets/` → convert to webp → wire → move the PNG master to
-  `art-masters/` so it stops shipping in `dist/`.
+- **Generated art can be fetched end to end.** The Higgsfield CDN *is*
+  reachable with curl, so the old hand-off through the user is no longer
+  needed. The flow is: generate → curl the PNG → convert to webp → wire →
+  copy the PNG master to `art-masters/` so it stops shipping in `dist/`.
+  There is no encoder on this box by default: no cwebp, no ffmpeg, no
+  ImageMagick. Install what you need per site and do not save it:
+  `npm install --no-save sharp` for images, `npm install --no-save ffmpeg-static`
+  for video, which drops a real ffmpeg.exe into node_modules and transcodes fine.
+  **Do not run `convert`.** It resolves to `C:/Windows/system32/convert.exe`,
+  the FAT-to-NTFS filesystem utility, not ImageMagick. Also note node on this
+  box does not resolve Git Bash's `/tmp`; pass it the real Windows path.
 
 ## The recurring architectural bug
 
@@ -80,6 +87,13 @@ monoline SVG driven by CSS custom properties so the same geometry re-skins per
 site: `--motif-stroke`, `--motif-weight`, `--motif-accent`, `--motif-resist`.
 Paths tagged `data-draw` animate on via `stroke-dashoffset`.
 
+The marigold garland was stepping its heads 21 apart at radius ~9, so every
+head cleared the next by about 3px and the swag read as beads on a wire rather
+than the rope its own comment describes. Heads now step 15.5 so they overlap,
+on a five-radius cycle so the sizes do not fall into step with the swag, and
+the pin lost the closed loop that made it read as an antenna. Used by heritage
+and mehendi only.
+
 Sizing rule for band motifs (garlands, the ajrak pallav): the host's **height**
 sets the motif size and the **width** decides how many units you see. Make the
 viewBox far wider than any viewport and use `preserveAspectRatio="xMinYMid slice"`
@@ -92,22 +106,63 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
 
 ## Per-site state
 
-- **Heritage** — most complete. Opening film ends dark; landing retimed to 1.25s.
-- **Mehendi** — gate, hero and story plates painted. Done.
+- **Heritage** — most complete, and the most animated: 10 scrollTrigger blocks
+  and 4 timelines. Opening film ends dark; landing retimed to 1.25s, and it now
+  ships a VP9/WebM sibling ahead of the mp4 (1152 KB against 1346 KB, VP9 CRF 38).
+  Eyebrows cut from 6 section-level to 3, unnumbered; em-dashes to zero. Note the
+  dress section's own h2 is `sr-only`, so its eyebrow is the only visible label
+  and must stay. Three contrast failures fixed with **scoped** overrides, not token
+  changes, because `--gold` and `--gold-light` also drive motif accents in every
+  section: story card numbers 2.67 to 5.3, hero date separators 4.38 to 4.78, and
+  the date-scratch separators 3.48 to about 7.5.
+  Its markup uses `.eyebrow` and `<br>`, not `.section-kicker` and `<br />`, so
+  greps written for the other four silently report it as clean.
+  **Mobile type was the real defect**: 17 of 27 text elements rendered under
+  14px at 390, bottoming at 8px, including the venue address and the programme
+  times at 10px and the RSVP button at 10px. Raised by tier in the 720px block
+  (prose 15, controls 14, dates 13, mono labels 12); desktop untouched. The
+  smallest text on the page is now 12px. The date reveal is a dateline like the
+  other two, captioned "October 2026 / Karachi" and deliberately not repeating
+  the weekday, since `.reveal__details` beneath already says "Saturday arrival".
+  The story head's flourish was outranking its own lead on mobile, 30px of
+  decoration over a 14px paragraph; the lead is now 16px and the flourish sits
+  right at 22px.
+- **Mehendi** — gate, hero and story plates painted. Kickers cut from 8 to 3
+  and unnumbered, em-dashes to zero, and 1.3 MB parked: three face photos, an
+  illustration superseded by its own v3, and four standalone SVGs superseded
+  one-for-one by shared-kit motifs of the same names. Motion is good and was
+  left alone; the counter-rotating chakris are already its signature move.
+  **Its palette does not clear AA**: cream on fuchsia is 3.93:1 and the
+  marigold heading accent is 2.87 on leaf green and 2.43 on fuchsia. Unfixed,
+  because every fix moves a brand colour. See `.claude/DECISIONS.md`.
 - **Nikkah** — gate still + a 5s opening film that ends on flat white, handed
   off to a white veil so there is no bright-to-dark cut. The film plays on
   **portrait viewports only**; the source is 9:16 at 716px wide and a
   cover-crop on desktop would throw the doors out of frame. Desktop keeps the
   parting-panel gate. A 16:9 render is the open item.
-  Known cosmetic: on mobile the line "request the honour of your presence at
-  their nikkah" clips the gold door handles slightly.
-  Section 02 is titled "The venue" and section 06 is "The place" — the venue
-  is named twice; renaming 06 to "The setting" is the pending fix.
-- **Ajrak** — gate painting wired; opener background bug fixed; motif kit
-  rewritten authentically; pallav bands added. Hero and story plate are still
-  plain, and `rooftopSkyline` on the story section has no ajrak in it at all.
-- **Editorial** — 8 images already, structurally different from the other four
-  (no `section-kicker` / `opener__` markup). Not yet audited.
+  The venue was named twice and renaming section 06's kicker only fixed half
+  of it: section 02's heading still read "The venue." while 06 was "The
+  Courtyard.". Section 02 is the ceremony detail block, so it is now "The
+  ceremony" / "The nikkah.". Kickers dropped from 7 to 3 and lost their
+  numbering, which had run 02, 03, 05, 06, 07, 08 with no 01 and no 04.
+  A colonnade photograph replaced the hero's olive radial gradient and a
+  garment study fills the attire section, which had only a swatch row.
+  On narrow screens the venue arch now takes nikkah-venue.webp: the arch is
+  ratio 0.82, and that tall crop keeps 24.07 of its 24.23 detail energy there
+  where the 1.50 landscape keeps only 21.1 of 27.54.
+  The mobile occasion line clears the gold door handles: the 20px of lift
+  comes off `.opener__monogram`'s bottom margin so the name travels up with
+  it — lifting the line on its own puts the descender of "Zayn" straight
+  through the text. See `.claude/DECISIONS.md`.
+- **Ajrak** - gate painting wired; opener background bug fixed; motif kit
+  rewritten authentically; pallav bands added. Four craft photographs now
+  carry the hero, story, invitation and attire. The wrong-province Lahore
+  rooftop is gone. Fraunces is still the display serif and is the open item.
+- **Editorial** — structurally different from the other four (no
+  `section-kicker` / `opener__` markup). Audited and rebuilt: six unused face
+  photographs parked, four still lifes generated, the page rebuilt as one
+  continuous Karachi evening with an hour-aware accent, and the date reveal
+  reset as a printed dateline.
 
 ## Assets
 

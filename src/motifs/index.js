@@ -250,8 +250,8 @@ export function marigoldString({ draw = true, units = 4 } = {}) {
   const swag = throughPoints(samples);
 
   // Heads sit a fraction under the string, so the thread reads as thread.
-  const heads = walk(samples, 21, 10).map((pt, i) => {
-    const r = [9.6, 8.4, 9, 8.8][i % 4];
+  const heads = walk(samples, 15.5, 8).map((pt, i) => {
+    const r = [10.4, 9.2, 10, 9.6, 8.9][i % 5];
     return `<g transform="translate(${pt.x.toFixed(2)} ${(pt.y + r * 0.72).toFixed(2)})">${marigoldHead(r)}</g>`;
   }).join('\n    ');
 
@@ -262,8 +262,7 @@ export function marigoldString({ draw = true, units = 4 } = {}) {
     const y = yAt(x);
     // The pin point: a short hanger above the string, clear of the heads.
     knots.push(`<g transform="translate(${x} ${y.toFixed(2)})">
-      <path ${S} d="M0 -2 L0 -13"/>
-      <path ${S} d="M0 -13 a4 4 0 0 1 0 -8 a4 4 0 0 1 0 8"/>
+      <path ${S} d="M0 -3 L0 -9"/>
       <path ${SA} d="M-1.5 -3 C -6 -7, -11 -8, -14 -6 C -10 -2, -5 -1, -1.5 -3 Z"/>
       <path ${SA} d="M1.5 -3 C 6 -7, 11 -8, 14 -6 C 10 -2, 5 -1, 1.5 -3 Z"/>
     </g>`);
