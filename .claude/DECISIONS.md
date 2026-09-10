@@ -461,6 +461,54 @@ gate parts and hides, focus lands on `#main`, all six convergence blocks
 resolve to x=0, no horizontal overflow at either width, no page or console
 errors, and under reduced motion nothing is offset or under 0.9 opacity.
 
+
+## The audio was Ogg-only on every site, and one file was 11 kHz
+
+Found while looking for something worth doing rather than something new to
+build. All five older sites shipped their music as a lone Ogg Vorbis source.
+
+The first version of this claim, told to the user, was too strong: "silent on
+Safari and iOS". Checked properly, Safari added native Ogg Vorbis in 18.4,
+was partial from 14.1 to 18.3 depending on system components, and played
+nothing below that. So a 2025-or-later iPhone was fine and everything older
+was not. Still worth fixing for a wedding invitation, where the guest list
+spans whatever phones people happen to own — but worth stating accurately.
+
+No transcoding was needed and no credits were spent: Commons generates an
+MP3 for every audio file, at `/wikipedia/commons/transcoded/<h0>/<h0:2>/
+<Name.ogg>/<Name.ogg>.mp3`, where the directory pair comes from the md5 of
+the underscored filename. That md5 trick is the only route in from this box,
+because `commons.wikimedia.org` is blocked here while `upload.wikimedia.org`
+is not. An ffmpeg-static install was started for the job and abandoned — it
+crawled to 22 MB of 80 and was never needed.
+
+**The real find was `raga-kaushi-kanra.ogg`: 11 kHz stereo Vorbis at 57
+kbps.** Chrome rejects it with `MEDIA_ERR_SRC_NOT_SUPPORTED` on most loads —
+three runs of three on nikkah, one of three on editorial — while every other
+track on every other site decoded three out of three. It is also a legacy
+rate that sounds muffled. Nikkah and editorial now list the 44.1 kHz MP3
+first and keep the Ogg behind it. Heritage and mehendi keep their Ogg in
+front: 44.1 kHz at 192 and 80 kbps, better than a 64 kbps MP3, and they never
+failed.
+
+**Two traps in verifying this**, both of which produced convincing false
+failures before being understood:
+
+1. The browser picks one source and never requests the other, so loading the
+   page proves nothing about the fallback. Each file has to be loaded on its
+   own.
+2. The page's own `<audio>` element requests the same URL as the probe, and
+   two elements contending for one large media resource make Chrome fail one
+   of them with the same error code a genuinely broken file gives. The tell
+   was that Karachi Deco never flaked — it was the only site on
+   `preload="none"`. Detaching the page element first made the signal stable,
+   and every site is now on `preload="none"` anyway, since the music only
+   starts on the gate click.
+
+Before that was understood the failure appeared to wander between sites on
+repeated runs, which is the signature of a racy probe rather than a broken
+file — and is why it was chased instead of reported.
+
 ## Open items
 
 1. Ajrak: the resist-to-madder-to-indigo dye spine is not built. The section
@@ -475,13 +523,10 @@ errors, and under reduced motion nothing is offset or under 0.9 opacity.
 4. Nikkah desktop still has no 16:9 opening film (~7.5 credits).
 5. No site has been checked on a real phone.
 6. No published preview/artifact for any site.
-7. The other five sites ship music as Ogg only, so they are silent on Safari
-   and iOS. Karachi Deco ships an AAC sibling alongside; the same two lines
-   of markup would fix the rest, next time one of them is open.
-8. The motif kit is out of sync: Karachi Deco has 26 marks, the other five
-   have 24. `decoFan` and `decoRule` are pure additions, so copying changes
-   nothing existing — but it means a commit and a deploy on five live sites.
-9. Two more sites were approved and are not started: **Nastaliq calligraphy**,
+7. Ajrak has no music at all. Every other site has a gate-triggered track
+   and a play/pause control; ajrak has neither. It needs a public-domain
+   Sindhi or Sufi recording picked before anything can be wired.
+8. Two more sites were approved and are not started: **Nastaliq calligraphy**,
    plus one of **Botanical English–Desi** or **Phulkari-as-craft**. Which of
    those two has not been chosen. Both get **their own couple**, not
    Noor & Zayn, and the set is to mix Pakistani names with international ones.

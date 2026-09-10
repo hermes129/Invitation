@@ -93,11 +93,10 @@ monoline SVG driven by CSS custom properties so the same geometry re-skins per
 site: `--motif-stroke`, `--motif-weight`, `--motif-accent`, `--motif-resist`.
 Paths tagged `data-draw` animate on via `stroke-dashoffset`.
 
-**The kit is currently out of sync.** Karachi Deco added `decoFan` and
-`decoRule`, taking it to 26 marks; the other five still carry 24. Both are
-pure additions, so nothing existing changes when they are copied across — but
-copying means a commit and a Pages deploy on five live sites, so it has not
-been done unprompted.
+All six are in sync at **26 marks** as of 10 September 2026, when `decoFan`
+and `decoRule` were copied out of Karachi Deco. Verified by serving all six
+builds in real Chrome, not by diffing: every `[data-motif]` host renders an
+`<svg>`, none come back empty, console clean on all six.
 
 A host rule the kit depends on and does not carry itself: an injected `<svg>`
 has a viewBox and no width or height, so unless the site's CSS says
@@ -232,6 +231,36 @@ background image measures correctly and does not appear.
 - Shipped art is webp. Quality 82 is the norm; dense block print resists
   compression, so the ajrak gate is downscaled to 1240px wide instead.
 - Video ships as H.264 CRF 26 plus a WebM copy.
+
+### Audio
+
+**Never ship a single Ogg source.** Safari only added native Ogg Vorbis in
+18.4; 14.1 to 18.3 was partial and depended on system components, and below
+that — including iOS up to 17.3 — it plays nothing. Every site now pairs its
+Ogg with an MP3, and Karachi Deco pairs its Opus with AAC. `preload="none"`
+on all six: the music only starts on the gate click, so a connection at page
+load spends data for nothing.
+
+Commons will hand you the MP3 itself, so no transcoding is needed. The path
+is derived from the md5 of the filename with underscores:
+
+    https://upload.wikimedia.org/wikipedia/commons/transcoded/<h[0]>/<h[0:2]>/<File_Name.ogg>/<File_Name.ogg>.mp3
+
+`commons.wikimedia.org` is blocked from this box but `upload.wikimedia.org`
+is reachable, so that md5 trick is the only way in. Expect 429s when pulling
+several files; retry rather than assuming a 404.
+
+Check the sample rate before trusting a Commons Ogg. `raga-kaushi-kanra.ogg`
+is 11 kHz stereo Vorbis at 57 kbps, and Chrome rejects it outright with
+`MEDIA_ERR_SRC_NOT_SUPPORTED` on most loads. Nikkah and editorial therefore
+list the 44.1 kHz MP3 **first** and keep the Ogg as the fallback; heritage
+and mehendi keep their Ogg in front, being 44.1 kHz at 192 and 80 kbps.
+
+Verify by loading each file on its own — the browser picks one source and
+never touches the other, so a page that plays proves nothing about the
+fallback. Detach the page's own `<audio>` first: two elements contending for
+one large media file make Chrome fail one of them, which reads exactly like a
+broken file. `.test-tools/playwright/audio-check.mjs` does all of this.
 
 ## Installed skills
 
