@@ -12,7 +12,12 @@ the motif kit.
 | Minimal Ivory Nikkah (photographic) | `projects/minimal-ivory-gold-nikkah` | `--base=./` | yes |
 | Sindhi Ajrak (block print) | `projects/sindhi-ajrak-invitation` | `--base=./` | yes |
 | Contemporary Editorial | `projects/contemporary-pakistani-editorial` | `--base=./` | yes |
-| Karachi Deco (1930s Saddar) | `projects/karachi-deco-wedding` | `--base=./` | local only |
+| Karachi Deco (1930s Saddar) | `projects/karachi-deco-wedding` | `--base=./` | yes |
+
+**Site seven onward gets its own couple**, not Noor & Zayn, and the set should
+mix Pakistani names with international ones. The six above keep the shared
+couple; the instruction is forward-looking. Vary the venue and date to suit
+each world too.
 
 The root site's base is `/Invitation/`, not `./`. Serving its `dist/` at a
 server root gives an unstyled page **with no console errors** — every asset
@@ -196,8 +201,18 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   own aspect ratio and the band motifs rendered 8px tall inside a 30px host;
   and champagne on the emerald venue panel is 4.02:1, fixed scoped to `.venue`
   with `--champagne-lt` at 5.43:1 rather than by moving a brand token.
-  **Not deployed.** It has no remote and no GitHub Pages site yet, and the two
-  motifs it added to the kit have not been copied to the other five.
+  Music is Arthur Schutt's "Bluin' the Black Keys", 1926, public domain via
+  Wikimedia and credited in the footer. It ships **Ogg/Opus first and AAC
+  behind it**, so it plays on Safari and iOS where the other five sites are
+  silent — they are Ogg-only, which is worth fixing when one of them is next
+  touched. `preload="none"`, started by the gate click.
+  The cornice band does not crop: `fitBands()` in `main.js` measures the host,
+  takes the repeat count nearest the motif's natural 4:1, and divides the
+  visible span by it, so the viewBox measures exactly what is on screen and
+  the band begins and ends on a whole ziggurat at any width. Verified drawn
+  width equals host width to the pixel at both 1440 and 390.
+  **Live** at `https://hermes129.github.io/karachi-deco-wedding/`. The two
+  motifs it added to the kit have still not been copied to the other five.
 
 ### The negative z-index trap
 

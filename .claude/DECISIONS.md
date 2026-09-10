@@ -475,14 +475,16 @@ errors, and under reduced motion nothing is offset or under 0.9 opacity.
 4. Nikkah desktop still has no 16:9 opening film (~7.5 credits).
 5. No site has been checked on a real phone.
 6. No published preview/artifact for any site.
-7. Karachi Deco has no remote and is not deployed. It is a local repo with an
-   initial commit and a working Pages workflow, waiting on a GitHub repo.
+7. The other five sites ship music as Ogg only, so they are silent on Safari
+   and iOS. Karachi Deco ships an AAC sibling alongside; the same two lines
+   of markup would fix the rest, next time one of them is open.
 8. The motif kit is out of sync: Karachi Deco has 26 marks, the other five
    have 24. `decoFan` and `decoRule` are pure additions, so copying changes
    nothing existing — but it means a commit and a deploy on five live sites.
 9. Two more sites were approved and are not started: **Nastaliq calligraphy**,
    plus one of **Botanical English–Desi** or **Phulkari-as-craft**. Which of
-   those two has not been chosen.
+   those two has not been chosen. Both get **their own couple**, not
+   Noor & Zayn, and the set is to mix Pakistani names with international ones.
 
 Closed: all five sites have now had the design pass. Ajrak is a git repo with
 an initial commit. The nikkah venue is no longer named twice, at the heading as
