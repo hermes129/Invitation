@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "karachi-deco",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "projects/karachi-deco-wedding", "run", "dev", "--", "--port", "5183", "--strictPort"],
+      "port": 5183
+    }
+  ]
+}

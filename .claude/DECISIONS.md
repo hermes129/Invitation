@@ -378,6 +378,89 @@ The one exception is where that ink is itself marginal. Nikkah's gold is
 has to be pinned above 24px with a clamp rather than set as an em fraction.
 Heritage's madder is about 7.5:1, so it passes at any size and needs no pin.
 
+## Karachi Deco, the sixth site
+
+Built from nothing on 8 September 2026, chosen first out of the eight original
+concepts. Four images, eight credits, all four usable on the first pass.
+
+**Why it is the only sans-led site.** The other five are serif worlds and a
+sixth would have read as a variant of one of them. Deco was drawn with
+geometric sans — Futura and its cousins — so Jost against DM Mono is the
+historically right choice *and* the one that separates it from the family.
+Nothing else in the set is allowed to go sans; that is the whole point.
+
+**The signature move: bilateral convergence.** Every facade, grille and fan in
+this vocabulary folds down its own centre line, so the page assembles that way
+too. Paired blocks enter from opposite edges and meet on the axis instead of
+rising from below, which is what all five siblings do. The tweens carry
+transform only — never opacity — so a ScrollTrigger that fails to update
+leaves a block un-offset rather than invisible. Same rule as Editorial's fold,
+same reason: an invitation has to fail readable.
+
+**The gate crop was a measurement, not a taste call.** The doors are ratio
+0.56. Cover-cropping that into any landscape viewport throws most of the frame
+away, and centring lands on the blank lower door panels. `object-position:
+center 40%` keeps the band from the top rail through the handles, which is the
+part that reads as a gate. On portrait viewports the height governs and the
+value does nothing, so the fan lunette shows in full.
+
+**What the drawn motifs cost the gate.** The first version overlaid a `decoFan`
+grille and a champagne `.opener__seam` on the photograph. The photograph
+already has a fan lunette and a brass mullion dead centre; the drawn versions
+sat on top of the real ones and read as a printing fault. Both were cut. When
+the art already contains the motif, the motif is not additive.
+
+**Three bugs, all invisible to inspection.**
+
+1. *The hero photograph never painted.* `html` carries a background, which
+   stops `body`'s background propagating to the canvas — so `body` paints as
+   an ordinary element and `.hero`'s art, scrim and keyline, all at negative
+   z-index, fell behind it. Every computed style was correct and the console
+   was clean; the section simply rendered flat black. `isolation: isolate` on
+   `.hero` fixes it.
+2. *Every injected SVG was the wrong size.* The stylesheet had no `.motif`
+   rule, so each `<svg>` fell back to width 100% and an auto height from its
+   own aspect ratio. For `decoRule` at 160:1 that meant the entire band
+   rendered about 8px tall inside a 30px host, which quietly defeated the
+   slice sizing rule the kit documents. The other five sites all carry
+   `.motif { width: 100%; height: 100% }`; this one was written without it.
+3. *`decoRule` did not obey its own docstring.* It shipped
+   `preserveAspectRatio="xMidYMid slice"` on a 960-wide viewBox, so the width
+   governed the scale, the band was drawn 1.35x too large, and `slice` shaved
+   its top and bottom rules clean off — the exact failure the kit notes warn
+   about. Now `xMinYMid slice` on a 4800-wide box, which is wider than any
+   viewport at a 48px band height, so the height always governs.
+
+**The band was redrawn twice.** A zigzag between two hairlines read as a word
+processor border. A ziggurat at a 2:1 repeat read as graph paper — twenty-one
+repeats across a desktop. At 4:1 it reads as a cornice. The keystone tick was
+also shortened: run to the baseline it floated in the void under the ziggurat
+as a stray mark, so it now hangs from the plateau only.
+
+**Contrast.** Champagne on the emerald venue panel is 4.02:1 against the 4.5
+small text needs. Fixed scoped to `.venue` with `--champagne-lt` at 5.43:1,
+not by moving `--champagne`, which also drives every rule and motif accent on
+the black sections where the same pair reads at 7.9:1. Same discipline as
+heritage.
+
+The hero needed the scrim solved rather than nudged: at 0.55 / 0.34 / 0.78 the
+worst composited pixel under NOOR & ZAYN was 2.92:1 against 3.0, and the
+right-hand meta line 4.48 against 4.5 — both near misses caused by the same
+handful of lit windows. 0.62 / 0.44 / 0.80 takes them to 3.67 and 5.52. The
+alternative, darkening the photograph, was rejected here because the glowing
+windows are the reason the shot works; that trade went the other way on
+nikkah, where the palette had a name to protect and the photograph did not.
+
+**Verified with real Chrome, not the pane.** The Browser pane reports
+`document.hidden === true`, so RAF never runs, GSAP never advances, and after
+the first load the screenshots stop repainting entirely — the capture kept
+showing an opener that had been removed from the DOM. Everything here was
+verified through `.test-tools/playwright/deco-review.mjs`, which drives the
+real Chrome at 1440x900 and 390x844 plus a `reducedMotion: 'reduce'` pass:
+gate parts and hides, focus lands on `#main`, all six convergence blocks
+resolve to x=0, no horizontal overflow at either width, no page or console
+errors, and under reduced motion nothing is offset or under 0.9 opacity.
+
 ## Open items
 
 1. Ajrak: the resist-to-madder-to-indigo dye spine is not built. The section
@@ -392,8 +475,14 @@ Heritage's madder is about 7.5:1, so it passes at any size and needs no pin.
 4. Nikkah desktop still has no 16:9 opening film (~7.5 credits).
 5. No site has been checked on a real phone.
 6. No published preview/artifact for any site.
-7. All five sites have uncommitted work. Nothing has been committed since the
-   heritage rebuild.
+7. Karachi Deco has no remote and is not deployed. It is a local repo with an
+   initial commit and a working Pages workflow, waiting on a GitHub repo.
+8. The motif kit is out of sync: Karachi Deco has 26 marks, the other five
+   have 24. `decoFan` and `decoRule` are pure additions, so copying changes
+   nothing existing — but it means a commit and a deploy on five live sites.
+9. Two more sites were approved and are not started: **Nastaliq calligraphy**,
+   plus one of **Botanical English–Desi** or **Phulkari-as-craft**. Which of
+   those two has not been chosen.
 
 Closed: all five sites have now had the design pass. Ajrak is a git repo with
 an initial commit. The nikkah venue is no longer named twice, at the heading as

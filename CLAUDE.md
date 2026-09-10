@@ -1,6 +1,6 @@
-# Noor & Zayn — five wedding invitation sites
+# Noor & Zayn — six wedding invitation sites
 
-Five independent Pakistani wedding invitation sites for the same event:
+Six independent Pakistani wedding invitation sites for the same event:
 **Noor & Zayn, 17 October 2026, The Courtyard, Beach Luxury Hotel, Karachi.**
 Each site is a self-contained Vite build with its own world; they share only
 the motif kit.
@@ -12,6 +12,7 @@ the motif kit.
 | Minimal Ivory Nikkah (photographic) | `projects/minimal-ivory-gold-nikkah` | `--base=./` | yes |
 | Sindhi Ajrak (block print) | `projects/sindhi-ajrak-invitation` | `--base=./` | yes |
 | Contemporary Editorial | `projects/contemporary-pakistani-editorial` | `--base=./` | yes |
+| Karachi Deco (1930s Saddar) | `projects/karachi-deco-wedding` | `--base=./` | local only |
 
 The root site's base is `/Invitation/`, not `./`. Serving its `dist/` at a
 server root gives an unstyled page **with no console errors** — every asset
@@ -81,11 +82,24 @@ Assume nothing renders correctly because the code looks right.
 
 ## The motif kit
 
-`src/motifs/index.js` is **shared and kept byte-identical across all five
-sites.** Edit it in one site, then copy it to the other four. Every mark is
+`src/motifs/index.js` is **shared and kept byte-identical across all six
+sites.** Edit it in one site, then copy it to the other five. Every mark is
 monoline SVG driven by CSS custom properties so the same geometry re-skins per
 site: `--motif-stroke`, `--motif-weight`, `--motif-accent`, `--motif-resist`.
 Paths tagged `data-draw` animate on via `stroke-dashoffset`.
+
+**The kit is currently out of sync.** Karachi Deco added `decoFan` and
+`decoRule`, taking it to 26 marks; the other five still carry 24. Both are
+pure additions, so nothing existing changes when they are copied across — but
+copying means a commit and a Pages deploy on five live sites, so it has not
+been done unprompted.
+
+A host rule the kit depends on and does not carry itself: an injected `<svg>`
+has a viewBox and no width or height, so unless the site's CSS says
+`.motif { width: 100%; height: 100% }` the browser gives it width 100% and an
+auto height from its own aspect ratio. For a band motif at 160:1 that renders
+the whole design about 8px tall inside a 30px host, silently defeating the
+slice sizing rule below.
 
 The marigold garland was stepping its heads 21 apart at radius ~9, so every
 head cleared the next by about 3px and the swag read as beads on a wire rather
@@ -163,6 +177,38 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   photographs parked, four still lifes generated, the page rebuilt as one
   continuous Karachi evening with an hour-aware accent, and the date reveal
   reset as a printed dateline.
+- **Karachi Deco** — the sixth, built from nothing on 8 September 2026, and the
+  only **sans-led** site in the set: Jost (the Futura lineage the era actually
+  drew with) against DM Mono, where the other five are serif worlds. Its
+  signature move is **bilateral convergence** — paired blocks entering from
+  opposite edges to meet on the centre line, because Deco is symmetry before
+  it is anything else. Transform only, so a trigger that never updates leaves
+  content un-offset rather than invisible.
+  Four photographs, none with a face: gate doors, the curved corner facade, a
+  terrazzo lobby floor, dinner jacket with emerald silk. The gate art is
+  ratio 0.56, so `object-position: center 40%` keeps the band from the top
+  rail through the handles on landscape viewports; centring lands on the blank
+  lower panels. It ships black `#0b0c0b`, champagne `#c8a35a`, emerald
+  `#0d4f3c`, bone `#e9e2d2`, and 1.5 MB of `dist/`.
+  Three bugs worth remembering, all caught by measuring rather than looking:
+  the hero photograph never painted (see the negative-z-index note below);
+  `.motif` had no width or height rule, so every injected SVG fell back to its
+  own aspect ratio and the band motifs rendered 8px tall inside a 30px host;
+  and champagne on the emerald venue panel is 4.02:1, fixed scoped to `.venue`
+  with `--champagne-lt` at 5.43:1 rather than by moving a brand token.
+  **Not deployed.** It has no remote and no GitHub Pages site yet, and the two
+  motifs it added to the kit have not been copied to the other five.
+
+### The negative z-index trap
+
+`html` carries a `background` on several of these sites. That stops `body`'s
+background propagating to the canvas, so `body` paints as an ordinary element
+— and any child sitting at a negative z-index inside a section that is not its
+own stacking context falls **behind** it. On Karachi Deco this rendered the
+hero as a flat black panel, photograph, scrim, keyline and all, with no
+console error and correct computed styles on every element. `isolation:
+isolate` on the section fixes it. Suspect this whenever a full-bleed
+background image measures correctly and does not appear.
 
 ## Assets
 
