@@ -1,6 +1,6 @@
-# Noor & Zayn — six wedding invitation sites
+# Seven wedding invitation sites
 
-Six independent Pakistani wedding invitation sites for the same event:
+Seven independent Pakistani wedding invitation sites. The first six share one event:
 **Noor & Zayn, 17 October 2026, The Courtyard, Beach Luxury Hotel, Karachi.**
 Each site is a self-contained Vite build with its own world; they share only
 the motif kit.
@@ -13,6 +13,7 @@ the motif kit.
 | Sindhi Ajrak (block print) | `projects/sindhi-ajrak-invitation` | `--base=./` | yes |
 | Contemporary Editorial | `projects/contemporary-pakistani-editorial` | `--base=./` | yes |
 | Karachi Deco (1930s Saddar) | `projects/karachi-deco-wedding` | `--base=./` | yes |
+| Nastaliq (Lahore calligraphy) | `projects/nastaliq-lahore-wedding` | `--base=./` | local only |
 
 **Site seven onward gets its own couple**, not Noor & Zayn, and the set should
 mix Pakistani names with international ones. The six above keep the shared
@@ -41,7 +42,8 @@ server root gives an unstyled page **with no console errors** — every asset
   There is no encoder on this box by default: no cwebp, no ffmpeg, no
   ImageMagick. Install what you need per site and do not save it:
   `npm install --no-save sharp` for images, `npm install --no-save ffmpeg-static`
-  for video, which drops a real ffmpeg.exe into node_modules and transcodes fine.
+  for video, which drops a real ffmpeg.exe into node_modules and transcodes fine —
+  or did: see the EFTYPE note under Audio.
   **Do not run `convert`.** It resolves to `C:/Windows/system32/convert.exe`,
   the FAT-to-NTFS filesystem utility, not ImageMagick. Also note node on this
   box does not resolve Git Bash's `/tmp`; pass it the real Windows path.
@@ -87,8 +89,8 @@ Assume nothing renders correctly because the code looks right.
 
 ## The motif kit
 
-`src/motifs/index.js` is **shared and kept byte-identical across all six
-sites.** Edit it in one site, then copy it to the other five. Every mark is
+`src/motifs/index.js` is **shared and kept byte-identical across all seven
+sites.** Edit it in one site, then copy it to the other six. Every mark is
 monoline SVG driven by CSS custom properties so the same geometry re-skins per
 site: `--motif-stroke`, `--motif-weight`, `--motif-accent`, `--motif-resist`.
 Paths tagged `data-draw` animate on via `stroke-dashoffset`.
@@ -213,6 +215,40 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   **Live** at `https://hermes129.github.io/karachi-deco-wedding/`. The two
   motifs it added to the kit have still not been copied to the other five.
 
+- **Nastaliq** — the seventh, built 11 September 2026, and the first with its
+  own couple: **Hira & Daniyal**, baraat Saturday 19 December 2026 at Haveli
+  Barood Khana in Lahore's Walled City, mehndi on the 17th, walima on the 20th.
+  Here the script *is* the image. Every word of Urdu is set in **Gulzar**, an
+  open-licence Nastaliq drawn for Urdu (204 KB woff2 for the Arabic subset,
+  which declares all of U+0600–06FF, so the Urdu digits, heh-goal and
+  superscript alif are covered); Spectral carries the English, deliberately
+  the smaller voice. Signature move **rule, then write**: each panel's jadval
+  — a gold band, then lapis and oxblood hairlines — draws on anticlockwise
+  from the top right, then each Nastaliq line inks in right to left behind a
+  soft-edged mask, then the English gloss settles in. It is
+  IntersectionObserver plus CSS transitions, not GSAP, and the hidden state
+  exists only on `.is-armed`, which script strips when a panel finishes — so
+  no script, reduced motion or no mask support all show every panel whole.
+  Verified mid-reveal: 456 ink pixels in the line's right half, 0 in its left.
+  The photographs show instruments only. Image models write fake
+  Arabic-looking script, which any Urdu reader would catch, so every prompt
+  banned letters and every real word on the page comes from the font.
+  Worth knowing before touching it: Nastaliq ink reaches outside its line box
+  and a mask clips to the border box, so `.ink` carries 0.3em/0.25em padding
+  — measured at zero ink pixels outside the box on all seven lines at both
+  widths. The haveli generation came back stitched (rows 256–267 spiked to
+  6.8× the median row difference) and is cropped at row 280. The zar-afshan
+  is generated torn-leaf flecks on 520px and 347px tiles; radial-gradient dots
+  read as a lattice. The venue card sits on its own night panel, because text
+  over the lit arcade measured 1.65–2.17:1 and thickening the veil would have
+  put the lamps out. `--gold-ink` #7a5a1f is the gold that can carry glyphs.
+  There is **no `html` background**, on purpose, so the negative z-index trap
+  below cannot happen here.
+  Music is Raag Jhinjhoti by Ustad Abdul Karim Khan: public domain in India
+  (he died in 1937); the US status rests on the Commons tag, and the file page
+  gives no recording year. MP3 first, original Vorbis behind it, both 44.1 kHz,
+  shipped unfaded because ffmpeg would not run. **Not deployed.**
+
 ### The negative z-index trap
 
 `html` carries a `background` on several of these sites. That stops `body`'s
@@ -249,6 +285,11 @@ is derived from the md5 of the filename with underscores:
 `commons.wikimedia.org` is blocked from this box but `upload.wikimedia.org`
 is reachable, so that md5 trick is the only way in. Expect 429s when pulling
 several files; retry rather than assuming a 404.
+
+**ffmpeg-static stopped executing on this box** in September 2026: Windows
+returns `EFTYPE` for the binary even though its PE header is intact, from Git
+Bash and from Node's execFileSync alike. The Nastaliq audio shipped without its
+fades as a result. Reinstall it, and test it, before planning around it.
 
 Check the sample rate before trusting a Commons Ogg. `raga-kaushi-kanra.ogg`
 is 11 kHz stereo Vorbis at 57 kbps, and Chrome rejects it outright with

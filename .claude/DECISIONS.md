@@ -509,6 +509,75 @@ Before that was understood the failure appeared to wander between sites on
 repeated runs, which is the signature of a racy probe rather than a broken
 file — and is why it was chased instead of reported.
 
+
+## Nastaliq, the seventh site
+
+Chosen from the two agreed concepts because it is the one most unlike the
+other six: the only site where the script is the image. The first built
+under the new rule that each site gets its own couple — Hira & Daniyal,
+Pakistani names, since the page is written in their script. The botanical
+site is the natural home for an international couple.
+
+**Rule, then write.** A calligrapher rules the jadval before writing inside
+it. So each panel draws its frame first (gold band, lapis and oxblood
+hairlines, anticlockwise from the top right), then its Nastaliq inks in right
+to left — the direction the pen moves — then the English gloss. The reveal is
+a mask three times the element's width sliding across it, with a soft leading
+edge so it reads as wet ink rather than a wipe. Built on IntersectionObserver
+and CSS transitions, so it does not depend on the GSAP ticker running.
+
+**Fail readable, again.** Nothing is hidden by default. The hidden state
+exists only on `.is-armed`, which script adds and strips once the panel is
+done; with no script, reduced motion, no observer or no mask support, every
+panel is simply there. Reduced motion measured zero armed panels, zero masks,
+zero faded elements, and all 60 rules drawn.
+
+**No invented script.** Image models produce Arabic-looking gibberish. On a
+page whose premise is authentic Nastaliq, one fake word in a photograph would
+undo it for any Urdu reader, so the four photographs are of instruments and
+paper only, every prompt banned letters outright, and all real Urdu comes
+from the font.
+
+**Things measured rather than assumed:**
+
+1. *Ink overflow.* Nastaliq reaches well outside its line box, and a mask
+   clips to the border box, so any ink outside would vanish mid-reveal and pop
+   in at the end. Each line was isolated and photographed with a margin: zero
+   dark pixels outside the box, on all seven lines, at both widths — including
+   after the hero's line-height was tightened from 1.75 to 1.45.
+2. *Direction.* Sampled mid-reveal against an absolute clock: 456 ink pixels
+   in the line's right half, 0 in its left.
+3. *A stitched photograph.* The haveli came back with a seam across the top:
+   rows 256–267 at 5–7× the median row-to-row difference, against about 2× for
+   ordinary architecture. Cropped at row 280; worst row afterwards 2.4×.
+4. *Contrast over a photograph.* Text over the lit arcade measured 1.65 to
+   2.17:1. Thickening the veil would have put out the lamps, so the venue card
+   is mounted on its own night panel instead; worst now 8.2:1.
+5. *Gold that cannot carry text.* The `·` separators in `--gold` measured
+   2.68 and 2.9. Scoped to `--gold-ink` #7a5a1f at 5.3; the token itself still
+   drives the rules, where it only has to be seen.
+
+**Zar-afshan.** The first version was five radial-gradient dots on small
+tiles, and in a screenshot it was unmistakably polka dots on a lattice. Gold
+leaf is torn, not punched: the flecks are now seeded irregular polygons on two
+tiles of 520px and 347px.
+
+**A broken Urdu line.** The invitation line wrapped between «عزت و» and
+«مسرت», leaving the و hanging and splitting "honour and joy" across two
+lines. The phrase is held together with a nowrap span, and `text-wrap:
+balance` evens the two lines.
+
+**The reply buttons were late.** The gloss waited for the ink to finish, so
+the RSVP card sat nearly empty for close to three seconds. It now starts when
+the last line is 55% written, and the clean-up timer runs from the true end of
+the ink so the mask never comes off mid-stroke.
+
+**Music.** Raag Jhinjhoti, Ustad Abdul Karim Khan — public domain in India,
+since he died in 1937. The Commons page gives no recording year, so US status
+rests on its tag. MP3 first at 44.1 kHz, original Vorbis behind it. It ships
+unfaded: ffmpeg-static now returns EFTYPE on this box, from Git Bash and from
+Node alike, though its PE header is intact.
+
 ## Open items
 
 1. Ajrak: the resist-to-madder-to-indigo dye spine is not built. The section
@@ -526,10 +595,11 @@ file — and is why it was chased instead of reported.
 7. Ajrak has no music at all. Every other site has a gate-triggered track
    and a play/pause control; ajrak has neither. It needs a public-domain
    Sindhi or Sufi recording picked before anything can be wired.
-8. Two more sites were approved and are not started: **Nastaliq calligraphy**,
-   plus one of **Botanical English–Desi** or **Phulkari-as-craft**. Which of
-   those two has not been chosen. Both get **their own couple**, not
-   Noor & Zayn, and the set is to mix Pakistani names with international ones.
+8. Nastaliq is built, verified and committed locally, but not deployed.
+9. The botanical English–Desi site is the last of the three approved. It
+   should carry the international couple.
+10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
+    benefit from a fade at its loop point once it does.
 
 Closed: all five sites have now had the design pass. Ajrak is a git repo with
 an initial commit. The nikkah venue is no longer named twice, at the heading as
