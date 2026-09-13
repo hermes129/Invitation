@@ -1,6 +1,6 @@
-# Seven wedding invitation sites
+# Eight wedding invitation sites
 
-Seven independent Pakistani wedding invitation sites. The first six share one event:
+Eight independent wedding invitation sites. The first six share one event:
 **Noor & Zayn, 17 October 2026, The Courtyard, Beach Luxury Hotel, Karachi.**
 Each site is a self-contained Vite build with its own world; they share only
 the motif kit.
@@ -13,7 +13,8 @@ the motif kit.
 | Sindhi Ajrak (block print) | `projects/sindhi-ajrak-invitation` | `--base=./` | yes |
 | Contemporary Editorial | `projects/contemporary-pakistani-editorial` | `--base=./` | yes |
 | Karachi Deco (1930s Saddar) | `projects/karachi-deco-wedding` | `--base=./` | yes |
-| Nastaliq (Lahore calligraphy) | `projects/nastaliq-lahore-wedding` | `--base=./` | local only |
+| Nastaliq (Lahore calligraphy) | `projects/nastaliq-lahore-wedding` | `--base=./` | yes |
+| Botanical (English–Desi walled garden) | `projects/botanical-garden-wedding` | `--base=./` | local only |
 
 **Site seven onward gets its own couple**, not Noor & Zayn, and the set should
 mix Pakistani names with international ones. The six above keep the shared
@@ -89,8 +90,8 @@ Assume nothing renders correctly because the code looks right.
 
 ## The motif kit
 
-`src/motifs/index.js` is **shared and kept byte-identical across all seven
-sites.** Edit it in one site, then copy it to the other six. Every mark is
+`src/motifs/index.js` is **shared and kept byte-identical across all eight
+sites.** Edit it in one site, then copy it to the other seven. Every mark is
 monoline SVG driven by CSS custom properties so the same geometry re-skins per
 site: `--motif-stroke`, `--motif-weight`, `--motif-accent`, `--motif-resist`.
 Paths tagged `data-draw` animate on via `stroke-dashoffset`.
@@ -247,7 +248,36 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   Music is Raag Jhinjhoti by Ustad Abdul Karim Khan: public domain in India
   (he died in 1937); the US status rests on the Commons tag, and the file page
   gives no recording year. MP3 first, original Vorbis behind it, both 44.1 kHz,
-  shipped unfaded because ffmpeg would not run. **Not deployed.**
+  shipped unfaded because ffmpeg would not run. **Live** at
+  `https://hermes129.github.io/nastaliq-lahore-wedding/`.
+
+- **Botanical** — the eighth, built 14 September 2026, and the first
+  international couple: **Amelia & Hamza**, Saturday 19 June 2027, a walled
+  garden near Chipping Norton, over a weekend — mehndi Friday, the wedding
+  Saturday, a walima lunch Sunday. Two gardens are the whole idea: English
+  border flowers and Pakistani garden flowers, on the same table. Newsreader
+  with Instrument Sans, neither used elsewhere.
+  Signature move **one stem, two gardens**: a single drawn stem grows down the
+  left gutter with its tip tied to the reader's eye line, 62% down the screen,
+  not to scroll percentage. At each section it puts out a flower, alternating
+  gardens — sweet pea, genda, delphinium, motia — and ends at the damask rose in
+  the reply, the one flower both gardens grow. Each carries a herbarium label:
+  binomial, common name, and where it grows. Measured from the path itself:
+  tip error 0px at every section at both widths, growth only ever forwards, all
+  five flowers open by the foot, and zero intersections between any flower box
+  and any line of text. Reduced motion paints the whole plant at once. The five
+  drawings are the site's own `flora.js`, not the shared kit, because a kit
+  change means redeploying every site.
+  The venue is deliberately unnamed — "a walled garden near Chipping Norton",
+  directions with the reply, coaches from Kingham station — rather than an
+  invented estate that reads as a real one.
+  Music is *Salut d'Amour*, Elgar's engagement present to his wife, in an
+  October 1911 Zonophone recording from the Internet Archive's Great 78
+  Project. Published before 1926, so public domain in the US as well as the
+  UK. **A 1947 Barbirolli recording on Commons was turned down**: public domain
+  in the EU, but US recordings from 1947 stay protected until 2057, and these
+  pages are hosted in the US. Check the publication year against US law, not
+  just the Commons tag. MP3 only, 5 MB, unfaded. **Not deployed.**
 
 ### The negative z-index trap
 

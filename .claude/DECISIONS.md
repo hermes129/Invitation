@@ -578,6 +578,60 @@ rests on its tag. MP3 first at 44.1 kHz, original Vorbis behind it. It ships
 unfaded: ffmpeg-static now returns EFTYPE on this box, from Git Bash and from
 Node alike, though its PE header is intact.
 
+## Botanical, the eighth site
+
+The last of the three approved concepts, and the one kept for the
+international couple: Amelia & Hamza, an English bride and a Pakistani groom.
+The site's premise is theirs — two gardens, one table.
+
+**One stem, two gardens.** Deco converges from the edges and Nastaliq reveals
+panel by panel, so this one needed a different shape of motion: a single
+continuous line through the whole page. A drawn stem grows down the left
+gutter, putting out a flower at each section and alternating between the two
+gardens, ending at the damask rose, which both of them grow.
+
+**The tip follows the eye, not the scrollbar.** Tied to scroll percentage, the
+drawing would run ahead of the reader at the top of a long page and lag at the
+bottom. Instead the stem's drawn length is solved from a lookup of length
+against page height, so the tip always sits at 62% of the viewport, where the
+eye rests while reading. Measured from the path geometry at every section, at
+both widths: 0px of error.
+
+**Decoration, and built to be.** Stem, flowers and labels are aria-hidden and
+nothing on the page waits for them. No script means no plant, not a broken
+page. Reduced motion measured the full stem drawn and five of five flowers open
+before the gate was even clicked.
+
+**Kept out of the shared kit.** Five flower drawings and a vine are this
+garden's, and adding them to the kit would have meant a commit and a deploy on
+seven live sites. `flora.js` is local, like Nastaliq's jadval.
+
+**No flower on the words.** A margin drawing that clips a heading is worse than
+no drawing, so the harness tests every flower box against every line box of
+text on the page. Zero intersections at 1440 and at 390. On phones the left
+gutter widens to 38px to make room, and the herbarium labels are dropped.
+
+**Things that looked right and were not:**
+
+1. *The sweet pea read as a tulip* at margin size. A smooth dome is a tulip; a
+   sweet pea's standard petal is notched and ruffled. Redrawn with the notch and
+   an inner ruffle.
+2. *The hero date line measured 4.47:1* against 4.5, over the flat-lay
+   photograph's patch of window light. It now uses full ink instead of
+   `--ink-soft`.
+3. *The walled-garden image shipped at 486 KB.* Dense planting resists
+   compression; 1800px at q80 brings it to 367 KB.
+
+**Music, and why the obvious recording was wrong.** Commons had Barbirolli and
+the Hallé playing an Enigma variation, tagged public domain. That tag rests on
+EU law: performer rights there expire after 70 years. In the US, recordings
+published between 1947 and 1956 are protected for 110 years — until 2057 — and
+GitHub Pages is a US host. Rejected. What ships is *Salut d'Amour* from an
+October 1911 Zonophone disc, via the Internet Archive's Great 78 Project:
+published before 1926, so public domain in the US too, and a piece Elgar wrote
+as his engagement present. The rule worth keeping: check the publication year
+against US law, not just the Commons tag.
+
 ## Open items
 
 1. Ajrak: the resist-to-madder-to-indigo dye spine is not built. The section
@@ -595,9 +649,9 @@ Node alike, though its PE header is intact.
 7. Ajrak has no music at all. Every other site has a gate-triggered track
    and a play/pause control; ajrak has neither. It needs a public-domain
    Sindhi or Sufi recording picked before anything can be wired.
-8. Nastaliq is built, verified and committed locally, but not deployed.
-9. The botanical English–Desi site is the last of the three approved. It
-   should carry the international couple.
+8. Nastaliq is live at https://hermes129.github.io/nastaliq-lahore-wedding/.
+9. Botanical is built, verified and committed locally, but not deployed.
+   With it, all three approved concepts are built.
 10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
     benefit from a fade at its loop point once it does.
 
