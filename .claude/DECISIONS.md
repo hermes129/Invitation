@@ -650,8 +650,8 @@ against US law, not just the Commons tag.
    and a play/pause control; ajrak has neither. It needs a public-domain
    Sindhi or Sufi recording picked before anything can be wired.
 8. Nastaliq is live at https://hermes129.github.io/nastaliq-lahore-wedding/.
-9. Botanical is built, verified and committed locally, but not deployed.
-   With it, all three approved concepts are built.
+9. Botanical is live at https://hermes129.github.io/botanical-garden-wedding/.
+   All three approved concepts are now built and live.
 10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
     benefit from a fade at its loop point once it does.
 

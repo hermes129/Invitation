@@ -14,7 +14,7 @@ the motif kit.
 | Contemporary Editorial | `projects/contemporary-pakistani-editorial` | `--base=./` | yes |
 | Karachi Deco (1930s Saddar) | `projects/karachi-deco-wedding` | `--base=./` | yes |
 | Nastaliq (Lahore calligraphy) | `projects/nastaliq-lahore-wedding` | `--base=./` | yes |
-| Botanical (English–Desi walled garden) | `projects/botanical-garden-wedding` | `--base=./` | local only |
+| Botanical (English–Desi walled garden) | `projects/botanical-garden-wedding` | `--base=./` | yes |
 
 **Site seven onward gets its own couple**, not Noor & Zayn, and the set should
 mix Pakistani names with international ones. The six above keep the shared
@@ -277,7 +277,8 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   UK. **A 1947 Barbirolli recording on Commons was turned down**: public domain
   in the EU, but US recordings from 1947 stay protected until 2057, and these
   pages are hosted in the US. Check the publication year against US law, not
-  just the Commons tag. MP3 only, 5 MB, unfaded. **Not deployed.**
+  just the Commons tag. MP3 only, 5 MB, unfaded. **Live** at
+  `https://hermes129.github.io/botanical-garden-wedding/`.
 
 ### The negative z-index trap
 
