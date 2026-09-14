@@ -632,6 +632,56 @@ published before 1926, so public domain in the US too, and a piece Elgar wrote
 as his engagement present. The rule worth keeping: check the publication year
 against US law, not just the Commons tag.
 
+## Mobile spacing, and a reveal that wasted 40% of its time
+
+Reported on Nastaliq at phone width: the writing arrived late and the sections
+sat too far apart. Both turned out to be measurable, and the spacing problem
+was on seven of the eight sites.
+
+**The writing.** Three separate causes, not one slow duration:
+
+- The mask was a 300%-wide gradient slid across the line. Only the middle
+  third of its travel does any revealing, so roughly the first 40% of every
+  line's duration drew nothing at all. Caught by sampling ink pixels at 35% of
+  the longest line and finding zero. It is now a registered `@property
+  --reveal` percentage animating the gradient's own stops, so ink appears on
+  the first frame: 3636 px on the right half at 35%, 456 on the left.
+- Rules, lines and glosses were staged serially with generous gaps. Rules now
+  run 0.3s at 0.08s stagger, each line 0.5–1.2s by character count and
+  overlapping the next by 40%, the gloss 0.45s. Panels settle in 1.1–1.9s,
+  down from 3–4s.
+- Tightening the spacing put the invitation panel inside the first screen, so
+  its observer fired and it **wrote itself behind the closed cover**. The
+  observers now start in `finishOpening`, after the gate has gone.
+
+**The spacing.** Audited rather than eyeballed with
+`.test-tools/playwright/gap-audit.mjs`: at 390×844 with reduced motion, it
+measures from the lowest piece of content in one section to the highest in the
+next, counting text, media and CSS background photographs, and prints the
+paddings responsible. `junction-inspect.mjs` explains any single join by
+listing every box in the empty band. Most sites were running 4.5–6.5rem of
+section padding on phones, stacking to 150–250px between sections.
+
+| Site | Change on phones | Median gap after |
+|---|---|---|
+| Karachi Deco | `--space` 56px | 130 |
+| Nastaliq | `--space` 56px, hero hugs content | 125 |
+| Botanical | `--space` 56px | 97 |
+| Heritage | section padding 52px | 112 |
+| Editorial | 3.25rem sections, hero `min-height: auto` | 128 |
+| Nikkah | 3.25rem sections, verse 3.5rem, card margin halved | 128 |
+| Ajrak | 3.25–3.75rem shells, verse `min-height: auto` | 154 |
+| Mehendi | none, already max 102 | — |
+
+Editorial's worst join was not padding at all: the hero held a full screen
+while its image is 67svh and the scroll cue is hidden on phones, leaving about
+190px of empty panel. The audit's remaining high readings on Nikkah
+(ceremony→verse) and Ajrak (invitation→verse, countdown→rsvp) are decoration
+built from pseudo-elements — the nikkah ornament rings, the ajrak pallav band
+and the RSVP monogram ring — which the audit cannot see. On screen the actual
+whitespace at those joins is 80–95px. Read the screenshot before trimming a
+number the audit flags.
+
 ## Open items
 
 1. Ajrak: the resist-to-madder-to-indigo dye spine is not built. The section
@@ -655,7 +705,7 @@ against US law, not just the Commons tag.
 10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
     benefit from a fade at its loop point once it does.
 
-Closed: all five sites have now had the design pass. Ajrak is a git repo with
+Closed: mobile section spacing was measured and tightened on seven sites, and Nastaliq writes in 1.1-1.9s instead of 3-4s. All five sites have now had the design pass. Ajrak is a git repo with
 an initial commit. The nikkah venue is no longer named twice, at the heading as
 well as the kicker, and its occasion line clears the door handles. Editorial
 was audited and rebuilt as one continuous evening. Ajrak was photographed and

@@ -280,6 +280,17 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   just the Commons tag. MP3 only, 5 MB, unfaded. **Live** at
   `https://hermes129.github.io/botanical-garden-wedding/`.
 
+### Mobile spacing
+
+Measured on every site in September 2026 with
+`.test-tools/playwright/gap-audit.mjs` (content-to-content gap between
+neighbouring sections at 390px) and `junction-inspect.mjs` (what fills one
+join). Sections now carry about 52–60px of padding on phones; medians run
+97–154px. The audit cannot see decoration drawn with pseudo-elements, so a
+high reading next to an ornament is often fine: read the screenshot first.
+Nastaliq's panels must not start writing until the cover has gone — see
+`.claude/DECISIONS.md`.
+
 ### The negative z-index trap
 
 `html` carries a `background` on several of these sites. That stops `body`'s
