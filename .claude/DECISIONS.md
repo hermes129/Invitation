@@ -748,7 +748,7 @@ keyboard and focus lands on main.
    All three approved concepts are now built and live.
 10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
     benefit from a fade at its loop point once it does.
-11. Mehak & Ghayoor is built and committed locally; not yet published.
+11. Mehak & Ghayoor is live at https://hermes129.github.io/mehak-ghayoor-baraat/.
 
 Closed: mobile section spacing was measured and tightened on seven sites, and Nastaliq writes in 1.1-1.9s instead of 3-4s. All five sites have now had the design pass. Ajrak is a git repo with
 an initial commit. The nikkah venue is no longer named twice, at the heading as

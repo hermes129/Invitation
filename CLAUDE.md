@@ -293,7 +293,11 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   tiling at 67.5°. No photographs, no generated art, no shared motif kit.
   The Arabic (Bismillah, Qur'an 51:49) is inserted from api.alquran.cloud,
   never retyped. RSVP is call or WhatsApp to family contacts, no form.
-  Music: oud by Andy R. Jordan, CC BY-SA 3.0, 63 s loop.
+  Music: oud by Andy R. Jordan, CC BY-SA 3.0, 63 s loop. The names block was
+  made playful on request: names spring in from either side, two stars roll
+  in round a tilted "with", sparkles twinkle. Higgsfield was offered and not
+  used: generated art would be the one inexact thing on a page of true
+  geometry. **Live** at `https://hermes129.github.io/mehak-ghayoor-baraat/`.
   **Never select SVG strokes with `[pathLength]`**: Chrome matches it but
   does not restyle the strokes when an ancestor class changes, so every line
   stayed hidden after its host disarmed. Use a class (`.g-draw`).
