@@ -748,6 +748,7 @@ keyboard and focus lands on main.
    All three approved concepts are now built and live.
 10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
     benefit from a fade at its loop point once it does.
+11. Mehak & Ghayoor is built and committed locally; not yet published.
 
 Closed: mobile section spacing was measured and tightened on seven sites, and Nastaliq writes in 1.1-1.9s instead of 3-4s. All five sites have now had the design pass. Ajrak is a git repo with
 an initial commit. The nikkah venue is no longer named twice, at the heading as
@@ -757,4 +758,3 @@ de-Punjabi'd. Nikkah was photographed, its face photos parked and its mobile
 venue arch given the crop that survives it. Mehendi lost 1.3 MB of superseded
 assets and face photographs, and gained the global `.sr-only` it never had.
 Heritage gained its WebM fallback and three scoped contrast fixes.
-11. Mehak & Ghayoor is built and committed locally; not yet published.
