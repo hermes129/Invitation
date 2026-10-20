@@ -746,7 +746,6 @@ keyboard and focus lands on main.
 8. Nastaliq is live at https://hermes129.github.io/nastaliq-lahore-wedding/.
 9. Botanical is live at https://hermes129.github.io/botanical-garden-wedding/.
    All three approved concepts are now built and live.
-11. Mehak & Ghayoor is built and committed locally; not yet published.
 10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
     benefit from a fade at its loop point once it does.
 
@@ -758,3 +757,4 @@ de-Punjabi'd. Nikkah was photographed, its face photos parked and its mobile
 venue arch given the crop that survives it. Mehendi lost 1.3 MB of superseded
 assets and face photographs, and gained the global `.sr-only` it never had.
 Heritage gained its WebM fallback and three scoped contrast fixes.
+11. Mehak & Ghayoor is built and committed locally; not yet published.
