@@ -682,6 +682,50 @@ and the RSVP monogram ring — which the audit cannot see. On screen the actual
 whitespace at those joins is 80–95px. Read the screenshot before trimming a
 number the audit flags.
 
+## Mehak & Ghayoor, the first client site
+
+The client picked the Nikkah site as the look they liked and asked for an
+Islamic design style, so the brief was ivory and gold, minimal, but a new
+design. Three directions were offered (compass and rule, a marble jaali, a
+lantern night); compass and rule was chosen, and it needs no image credits.
+
+What was decided and why:
+
+- **Construction as the motion.** Islamic geometric ornament is set out with
+  compass and straight edge before any line is inked, so every ornament draws
+  its guides first, then its gold, and the guides stay as a faint ghost. Each
+  host finishes in about 1.3 s, with text rising alongside rather than after,
+  following the complaint that Nastaliq's writing arrived late.
+- **Guides never cross text.** The springing line is drawn only at the jambs
+  where the haunch centres sit, and the centre line only through the apex.
+  Drawn full width they struck through the evening kicker and the Bismillah
+  gloss; moving text below them instead pushed the desktop hero off screen.
+- **The cover opens with a compass circle**: a radial mask whose radius is a
+  GSAP-tweened custom property, with a gold ring riding its edge. The hero
+  starts building the moment the circle opens, so the first thing seen
+  through it is construction, not blank paper.
+- **The date on the cover sits on a plate.** Over the star field it measured
+  3.47:1 at its worst pixel; on the plate 4.90. The field's mask was also
+  widened so the eyebrow went from 4.08 to 5.21.
+- **Qur'anic text is never typed.** Uthmani text comes from
+  api.alquran.cloud and is inserted by script. Pickthall (1930) is the
+  translation because it is public domain in the US.
+- **Music** is a 63 s CC BY-SA oud piece. A 1931 bashraf and Ravi Shankar's
+  1937 Raga Tilanga were turned down on US recording copyright, as the
+  Barbirolli was for Botanical. The Commons API is reachable through
+  api.wikimedia.org and en.wikipedia.org's imageinfo, with a User-Agent.
+- **No form.** RSVP is call and WhatsApp per contact, with a prefilled
+  message, because a form here would collect replies that go nowhere.
+
+The Chrome bug: `.is-armed [pathLength]` matched, `matches()` agreed, and
+once the class was removed no rule applied, yet the computed dash stayed at
+the hidden value. Selecting by class fixed it.
+
+Measured: phone gaps median 57 px, max 129; every text pair 4.86:1 or
+better; zero console errors at 390 and 1440, with and without reduced
+motion; no cover and full content with scripts off; the seal opens by
+keyboard and focus lands on main.
+
 ## Open items
 
 1. Ajrak: the resist-to-madder-to-indigo dye spine is not built. The section
@@ -702,6 +746,7 @@ number the audit flags.
 8. Nastaliq is live at https://hermes129.github.io/nastaliq-lahore-wedding/.
 9. Botanical is live at https://hermes129.github.io/botanical-garden-wedding/.
    All three approved concepts are now built and live.
+11. Mehak & Ghayoor is built and committed locally; not yet published.
 10. ffmpeg-static no longer executes here (EFTYPE). The Nastaliq track would
     benefit from a fade at its loop point once it does.
 

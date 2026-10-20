@@ -15,6 +15,7 @@ the motif kit.
 | Karachi Deco (1930s Saddar) | `projects/karachi-deco-wedding` | `--base=./` | yes |
 | Nastaliq (Lahore calligraphy) | `projects/nastaliq-lahore-wedding` | `--base=./` | yes |
 | Botanical (English–Desi walled garden) | `projects/botanical-garden-wedding` | `--base=./` | yes |
+| Mehak & Ghayoor baraat (client) | `projects/mehak-ghayoor-baraat` | `--base=./` | yes |
 
 **Site seven onward gets its own couple**, not Noor & Zayn, and the set should
 mix Pakistani names with international ones. The six above keep the shared
@@ -279,6 +280,25 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   pages are hosted in the US. Check the publication year against US law, not
   just the Commons tag. MP3 only, 5 MB, unfaded. **Live** at
   `https://hermes129.github.io/botanical-garden-wedding/`.
+
+- **Mehak & Ghayoor** — the first **client** site, built 20 October 2026, not
+  part of the eight-site set: the client supplied the couple, families,
+  contacts and venue, and asked for no dress code. Baraat, Friday 8 January
+  2027, arrival 9 pm, Royal Sapphire, Gulistan-e-Johar, Karachi; the bride's
+  parents invite. The client liked the Nikkah site, so it is ivory and gold,
+  but a new design: **compass and rule**. Every ornament is generated in
+  `src/geometry.js` the way it is set out by hand (construction guides, then
+  the gold they imply) and drawn on by `src/construct.js`: {n/k} rosettes,
+  Mughal four-centred arches, and a Hankin star field on the octagon–square
+  tiling at 67.5°. No photographs, no generated art, no shared motif kit.
+  The Arabic (Bismillah, Qur'an 51:49) is inserted from api.alquran.cloud,
+  never retyped. RSVP is call or WhatsApp to family contacts, no form.
+  Music: oud by Andy R. Jordan, CC BY-SA 3.0, 63 s loop.
+  **Never select SVG strokes with `[pathLength]`**: Chrome matches it but
+  does not restyle the strokes when an ancestor class changes, so every line
+  stayed hidden after its host disarmed. Use a class (`.g-draw`).
+  Review harnesses: `.test-tools/playwright/baraat-review.mjs` and
+  `baraat-checks.mjs`.
 
 ### Mobile spacing
 

@@ -4,8 +4,32 @@
     {
       "name": "karachi-deco",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "projects/karachi-deco-wedding", "run", "dev", "--", "--port", "5183", "--strictPort"],
+      "runtimeArgs": [
+        "--prefix",
+        "projects/karachi-deco-wedding",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5183",
+        "--strictPort"
+      ],
       "port": 5183
+    },
+    {
+      "name": "baraat",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "projects/mehak-ghayoor-baraat",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5190",
+        "--strictPort"
+      ],
+      "port": 5190
     }
   ]
 }
