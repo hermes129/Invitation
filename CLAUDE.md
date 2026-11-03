@@ -291,9 +291,10 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   the programme reduced to Arrival of Baraat (9 pm) and Rukhsati (11 pm),
   replies by call or WhatsApp to family contacts, and the cover names sized to
   one line on phones (at 17vw they ran off both edges). Music is the client's
-  choice, the opening chords of Atif Aslam's "Tere Bin", a commercial recording
-  supplied by the user. It is cut at 9.40 s because the line entering at 9.48 s
-  may be a voice; that could not be settled from the spectrogram.
+  choice: the opening bar of "Tere Bin" from *Wazir* (2016), an exact 8 s phrase
+  from 1.032 s, a commercial recording supplied by the user. It stops before
+  the wavering line near 10.5 s, which may be a voice; a spectrogram cannot
+  settle that, so ask the user to listen before extending it.
   Live at `https://hermes129.github.io/mehak-ghayoor-baraat/`.
   From the compass-and-rule build, still worth knowing: **never select SVG
   strokes with `[pathLength]`**. Chrome matches it but does not restyle the
