@@ -287,9 +287,13 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   **It now runs on the Minimal Ivory Nikkah template** (28 October 2026): the
   client turned down the bespoke compass-and-rule design, which is kept in
   its repo as the git tag `compass-and-rule`. Changes from the template: the
-  client's details throughout, the programme and attire sections and the
-  RSVP form removed, replies by call or WhatsApp to family contacts, and the
-  cover names sized to one line on phones (at 17vw they ran off both edges).
+  client's details throughout, the attire section and RSVP form removed,
+  the programme reduced to Arrival of Baraat (9 pm) and Rukhsati (no time
+  confirmed yet, so it carries a gold mark), replies by call or WhatsApp to
+  family contacts, and the cover names sized to one line on phones (at 17vw
+  they ran off both edges). The client asked for the intro of "Tere Bin" as
+  the music; that is a commercial recording, so it needs a file and a decision
+  from the user, and the Kaushi Kanra track stays until then.
   Live at `https://hermes129.github.io/mehak-ghayoor-baraat/`.
   From the compass-and-rule build, still worth knowing: **never select SVG
   strokes with `[pathLength]`**. Chrome matches it but does not restyle the
