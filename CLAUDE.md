@@ -45,7 +45,7 @@ server root gives an unstyled page **with no console errors** — every asset
   ImageMagick. Install what you need per site and do not save it:
   `npm install --no-save sharp` for images, `npm install --no-save ffmpeg-static`
   for video, which drops a real ffmpeg.exe into node_modules and transcodes fine —
-  or did: see the EFTYPE note under Audio.
+  though see the EFTYPE note under Audio.
   **Do not run `convert`.** It resolves to `C:/Windows/system32/convert.exe`,
   the FAT-to-NTFS filesystem utility, not ImageMagick. Also note node on this
   box does not resolve Git Bash's `/tmp`; pass it the real Windows path.
@@ -288,12 +288,12 @@ undyed **resist dots**, and the **pallav** border band (`ajrakBorder`).
   client turned down the bespoke compass-and-rule design, which is kept in
   its repo as the git tag `compass-and-rule`. Changes from the template: the
   client's details throughout, the attire section and RSVP form removed,
-  the programme reduced to Arrival of Baraat (9 pm) and Rukhsati (no time
-  confirmed yet, so it carries a gold mark), replies by call or WhatsApp to
-  family contacts, and the cover names sized to one line on phones (at 17vw
-  they ran off both edges). The client asked for the intro of "Tere Bin" as
-  the music; that is a commercial recording, so it needs a file and a decision
-  from the user, and the Kaushi Kanra track stays until then.
+  the programme reduced to Arrival of Baraat (9 pm) and Rukhsati (11 pm),
+  replies by call or WhatsApp to family contacts, and the cover names sized to
+  one line on phones (at 17vw they ran off both edges). Music is the client's
+  choice, the opening chords of Atif Aslam's "Tere Bin", a commercial recording
+  supplied by the user. It is cut at 9.40 s because the line entering at 9.48 s
+  may be a voice; that could not be settled from the spectrogram.
   Live at `https://hermes129.github.io/mehak-ghayoor-baraat/`.
   From the compass-and-rule build, still worth knowing: **never select SVG
   strokes with `[pathLength]`**. Chrome matches it but does not restyle the
@@ -347,10 +347,9 @@ is derived from the md5 of the filename with underscores:
 is reachable, so that md5 trick is the only way in. Expect 429s when pulling
 several files; retry rather than assuming a 404.
 
-**ffmpeg-static stopped executing on this box** in September 2026: Windows
-returns `EFTYPE` for the binary even though its PE header is intact, from Git
-Bash and from Node's execFileSync alike. The Nastaliq audio shipped without its
-fades as a result. Reinstall it, and test it, before planning around it.
+**ffmpeg-static returned `EFTYPE` on this box** in September 2026, and the
+Nastaliq audio shipped without its fades as a result. It ran again in November
+2026 (6.1.1, with libmp3lame), so a fresh install is worth testing first.
 
 Check the sample rate before trusting a Commons Ogg. `raga-kaushi-kanra.ogg`
 is 11 kHz stereo Vorbis at 57 kbps, and Chrome rejects it outright with
